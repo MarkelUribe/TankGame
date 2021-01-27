@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import model.*;
 
 
 @SuppressWarnings("serial")
@@ -16,6 +17,7 @@ public class GuiBateanMarraztu extends JPanel {
     public void paint(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
         
+                
         g2d.setColor(Color.DARK_GRAY);
         g2d.drawString("Testu bat idazi dut", TOP_ALIGNMENT, TOP_ALIGNMENT);
 
@@ -28,15 +30,17 @@ public class GuiBateanMarraztu extends JPanel {
         
 
     }
+    
 
     public GuiBateanMarraztu() {
-          System.out.println("JFramea sortua, baina momentuz ez dago ikusgai.");       
+          System.out.println("JFramea sortua, baina momentuz ez dago ikusgai.");  
     }
 
     public static void main(String[] args) throws InterruptedException {
+        Map map1 = new Map(40, 30);
         JFrame frame = new JFrame("JFramearen Izenburua");
         frame.add(new GuiBateanMarraztu());
-        frame.setSize(600, 600);
+        frame.setSize(map1.getDimension().getX()*map1.getGrid(), map1.getDimension().getY()*map1.getGrid());
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);    
 

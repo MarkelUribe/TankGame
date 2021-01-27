@@ -1,8 +1,8 @@
 
-package pruebas;
+package model;
 
 
-import pruebas.MyPoint;
+import model.MyPoint;
 
 public class MyRectangle {
     private MyPoint topLeft;
@@ -12,10 +12,14 @@ public class MyRectangle {
         this.topLeft = topLeft;
         this.bottomRight = bottomRight;
     }
+    public MyRectangle(int p1, int p2,  int p3, int p4){
+        this.topLeft = new MyPoint(p1, p2);
+        this.bottomRight = new MyPoint(p3, p4);
+    }
     public double getAzalera(){
         return Math.abs(topLeft.getX()-bottomRight.getX()) * Math.abs(topLeft.getY()-bottomRight.getY());
     }
-    
+
     public double getPerimetroa(){
         return Math.abs(topLeft.getX()-bottomRight.getX())*2 + 2*Math.abs(topLeft.getY()-bottomRight.getY());
     }
