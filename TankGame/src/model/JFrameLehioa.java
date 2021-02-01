@@ -1,7 +1,7 @@
-package exec;
+package model;
 
 import javax.swing.JFrame;
-import model.*;
+import exec.*;
 
 public class JFrameLehioa extends JFrame {
     

@@ -1,5 +1,6 @@
 package exec;
 
+import model.JFrameLehioa;
 import javax.swing.JFrame;
 import model.*;
 
