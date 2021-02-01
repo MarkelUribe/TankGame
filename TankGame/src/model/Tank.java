@@ -1,6 +1,8 @@
 
 package model;
 
+import java.awt.Graphics;
+
 public class Tank {
 
         private MyRectangle tank1 = new MyRectangle(1, 1, 2, 2);
@@ -21,5 +23,12 @@ public class Tank {
         public void setTank2(MyRectangle tank2) {
             this.tank2 = tank2;
         }
+        
+        public void TankeakMarraztu(Graphics g){
+        //1.Tankea
+        
+        //Ezker bertikala
+        g.drawLine(tank1.getTopLeft().getX(), tank1.getTopLeft().getY(), tank1.getBottomRight().getX(), tank1.getBottomRight().getY());
+    }
 
     }
