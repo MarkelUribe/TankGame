@@ -47,6 +47,16 @@ public class GuiBateanMarraztu extends JPanel {
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
+        while (true) {
+            Thread.sleep(1000);
+            
+            
+            
+            
+            
+            
+            frame.repaint();
+        }
         
     }
 }
