@@ -11,6 +11,5 @@ public class TankGameMain {
         
         l1.setVisible(true); //Lehioa marraztu
         
-        l1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 }
