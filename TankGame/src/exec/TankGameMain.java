@@ -22,7 +22,7 @@ public class TankGameMain extends JPanel {
        
         g2d.setColor(Color.WHITE);
         t.TankeakMarraztu(g2d);
-        map1.drawGrid(g2d, false);
+        map1.drawGrid(g2d, false); //True to display the grid
 
     }
     
