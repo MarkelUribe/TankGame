@@ -1,15 +1,62 @@
 package exec;
 
-import model.JFrameLehioa;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 import model.*;
 
-public class TankGameMain {
+@SuppressWarnings("serial")
 
-    public static void main(String[] args) {
-        JFrameLehioa l1 = new JFrameLehioa();
+public class TankGameMain extends JPanel {
+
+    private static Map map1 = new Map(40, 30);
+    private Tank t = new Tank();
+    
+    @Override
+    public void paint(Graphics g) {
+        Graphics2D g2d = (Graphics2D) g;
         
-        l1.setVisible(true); //Lehioa marraztu
+        
+       
+        g2d.setColor(Color.WHITE);
+        t.TankeakMarraztu(g2d);
+        map1.drawGrid(g2d, true);
+
+    }
+    
+    
+    public TankGameMain() {
+        System.out.println("JFramea sortua, baina momentuz ez dago ikusgai.");
+    }
+
+    public static void main(String[] args) throws InterruptedException {
+        /*
+            JFramearen konfigurazioa
+         */
+        JFrame frame = new JFrame("TankGame");
+        
+        frame.setSize(map1.getDimension().getX() * map1.getGrid() + map1.getGrid()-3,
+                map1.getDimension().getY() * map1.getGrid() +(map1.getGrid()*2));
+        frame.add(new TankGameMain());
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setBackground(Color.BLACK);
+        
+        
+        
+        while (true) {
+            Thread.sleep(1000);
+            
+                    
+            
+                    
+            
+            
+            frame.repaint();
+        }
         
     }
 }

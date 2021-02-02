@@ -1,11 +1,13 @@
 
 package model;
 
+import java.awt.Graphics2D;
+
 
 public class Map {
 
         private MyPoint dimension;
-        private final int grid = 16;
+        private final int grid = 20;
 
         public Map(int p1, int p2) {
             MyPoint point = new MyPoint(p1, p2);
@@ -23,5 +25,26 @@ public class Map {
         @Override
         public String toString() {
             return "map{" + "XY= " + dimension.getXY() + ", grid=" + grid + '}';
+        }
+        
+        public void drawGrid(Graphics2D g, boolean piztuta){
+            if (piztuta) {
+                // bertikalak
+                MyPoint a = new MyPoint(1, 0);
+                MyPoint b= new MyPoint(1, dimension.getY());
+                for (int y = 0; y < dimension.getX(); y++) {
+                    g.drawLine(a.getX()*grid, a.getY()*grid, b.getX()*grid, b.getY()*grid);
+                    a.setX(a.getX()+1);
+                    b.setX(b.getX()+1);
+                }
+                // horizontalak
+                a = new MyPoint(0, 1);
+                b = new MyPoint(dimension.getX(), 1);
+                for (int y = 0; y < dimension.getY(); y++) {
+                    g.drawLine(b.getX()*grid, b.getY()*grid, a.getX()*grid, a.getY()*grid);
+                    a.setY(a.getY()+1);
+                    b.setY(b.getY()+1);
+                }
+            }
         }
     }
