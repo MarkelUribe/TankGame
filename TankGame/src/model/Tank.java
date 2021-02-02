@@ -8,8 +8,8 @@ public class Tank {
 
     private MyRectangle tank1 = new MyRectangle(4, 4, 1, 1);
     private MyRectangle tank2 = new MyRectangle(38, 28, 1, 1);
-    private int t1d = 6; //Erlojuko zenbakiekin bezala
-    private int t2d = 9;
+    private int t1d = 3; //Erlojuko zenbakiekin bezala
+    private int t2d = 12;
 
     public void setT1d(int t1d) {
         this.t1d = t1d;
@@ -45,6 +45,8 @@ public class Tank {
 
     public void TankeakMarraztu(Graphics2D g) {
         Map m = new Map(1, 1);
+        int tamaina = ((m.getGrid()/5)*2);
+        
         //1.Tankea
         g.fillRect(tank1.getTopLeft().getX() * m.getGrid(), tank1.getTopLeft().getY() * m.getGrid(),
                 tank1.getBottomRight().getX() * m.getGrid(), tank1.getBottomRight().getY() * m.getGrid());
@@ -54,25 +56,49 @@ public class Tank {
         g.fillRect(tank2.getTopLeft().getX() * m.getGrid(), tank2.getTopLeft().getY() * m.getGrid(),
                 tank2.getBottomRight().getX() * m.getGrid(), tank2.getBottomRight().getY() * m.getGrid());
         
-        
+        //pistola1
         if(t1d == 3){
-        g.fillRect((tank1.getTopLeft().getX()+1) * m.getGrid(), tank1.getTopLeft().getY() * m.getGrid(),
+        g.fillRect((tank1.getTopLeft().getX()+1) * m.getGrid(), tank1.getTopLeft().getY() * m.getGrid()+ tamaina,
                 tank1.getBottomRight().getX() * m.getGrid(), tank1.getBottomRight().getY() * m.getGrid()/5);
         }
         
         if(t1d == 6){
-        g.fillRect(tank1.getTopLeft().getX() * m.getGrid()+ ((m.getGrid()/5)*2), (tank1.getTopLeft().getY()+1) * m.getGrid(),
+        g.fillRect(tank1.getTopLeft().getX() * m.getGrid()+ tamaina, (tank1.getTopLeft().getY()+1) * m.getGrid(),
                 tank1.getBottomRight().getX() * m.getGrid()/5, tank1.getBottomRight().getY() * m.getGrid());
         }
         
         if(t1d == 9){
-        g.fillRect((tank1.getTopLeft().getX()-1) * m.getGrid(), tank1.getTopLeft().getY() * m.getGrid(),
+        g.fillRect((tank1.getTopLeft().getX()-1) * m.getGrid(), tank1.getTopLeft().getY() * m.getGrid()+ tamaina,
                 tank1.getBottomRight().getX() * m.getGrid(), tank1.getBottomRight().getY() * m.getGrid()/5);
         }
         
         if(t1d == 12){
-        g.fillRect(tank1.getTopLeft().getX() * m.getGrid(), (tank1.getTopLeft().getY()-1) * m.getGrid(),
+        g.fillRect(tank1.getTopLeft().getX() * m.getGrid()+ tamaina, (tank1.getTopLeft().getY()-1) * m.getGrid(),
                 tank1.getBottomRight().getX() * m.getGrid()/5, tank1.getBottomRight().getY() * m.getGrid());
+        }
+        
+        
+        
+        
+        //pistola2
+        if(t2d == 3){
+        g.fillRect((tank2.getTopLeft().getX()+1) * m.getGrid(), tank2.getTopLeft().getY() * m.getGrid()+ tamaina,
+                tank2.getBottomRight().getX() * m.getGrid(), tank2.getBottomRight().getY() * m.getGrid()/5);
+        }
+        
+        if(t2d == 6){
+        g.fillRect(tank2.getTopLeft().getX() * m.getGrid()+ tamaina, (tank2.getTopLeft().getY()+1) * m.getGrid(),
+                tank2.getBottomRight().getX() * m.getGrid()/5, tank2.getBottomRight().getY() * m.getGrid());
+        }
+        
+        if(t2d == 9){
+        g.fillRect((tank2.getTopLeft().getX()-1) * m.getGrid(), tank2.getTopLeft().getY() * m.getGrid()+ tamaina,
+                tank2.getBottomRight().getX() * m.getGrid(), tank2.getBottomRight().getY() * m.getGrid()/5);
+        }
+        
+        if(t2d == 12){
+        g.fillRect(tank2.getTopLeft().getX() * m.getGrid()+ tamaina, (tank2.getTopLeft().getY()-1) * m.getGrid(),
+                tank2.getBottomRight().getX() * m.getGrid()/5, tank2.getBottomRight().getY() * m.getGrid());
         }
     }
 
