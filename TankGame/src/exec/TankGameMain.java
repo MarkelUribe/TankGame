@@ -22,15 +22,11 @@ public class TankGameMain extends JPanel {
        
         g2d.setColor(Color.WHITE);
         t.TankeakMarraztu(g2d);
-        map1.drawGrid(g2d, true);
+        map1.drawGrid(g2d, false);
 
     }
     
     
-    public TankGameMain() {
-        System.out.println("JFramea sortua, baina momentuz ez dago ikusgai.");
-    }
-
     public static void main(String[] args) throws InterruptedException {
         /*
             JFramearen konfigurazioa
