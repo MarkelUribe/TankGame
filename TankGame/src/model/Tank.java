@@ -42,6 +42,30 @@ public class Tank {
     public void setTank2(MyRectangle tank2) {
         this.tank2 = tank2;
     }
+    
+    public void setT1Position(int x, int y){
+    tank1 = new MyRectangle(x,y,1,1);
+    }
+    
+    public void setT2Position(int x, int y){
+    tank2 = new MyRectangle(x,y,1,1);
+    }
+    
+    public int getT1X(){
+    return tank1.getTopLeft().getX();
+    }
+    
+    public int getT1Y(){
+    return tank1.getTopLeft().getY();
+    }
+    
+        public int getT2X(){
+    return tank2.getTopLeft().getX();
+    }
+    
+    public int getT2Y(){
+    return tank2.getTopLeft().getY();
+    }
 
     public void TankeakMarraztu(Graphics2D g) {
         Map m = new Map(1, 1);

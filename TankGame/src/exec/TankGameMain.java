@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyAdapter;  
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import model.*;
@@ -46,15 +47,25 @@ public class TankGameMain extends JPanel {
         // TIMER
         while (true) {
            Thread.sleep(timer);
-
-               .KeyPressed(KeyEvent e);
-
-                    
-            
-            
             frame.repaint();
         }
         
+        
+        
     }
-    
+    public class KeyInput extends KeyAdapter { 
+        
+        public void keyPressed(KeyEvent e) {
+        Integer key = e.getKeyCode();
+        if (key == KeyEvent.VK_LEFT) {
+            t.setT1Position(t.getT1X() + 1, t.getT1Y());
+        }
+        if (key == KeyEvent.VK_RIGHT) {
+            System.out.println("Pito");
+        }
+        
+        repaint();
+    }
+        
+    }
 }
