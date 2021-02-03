@@ -8,7 +8,7 @@ public class Tank {
 
     private MyRectangle tank1 = new MyRectangle(4, 4, 1, 1);
     private MyRectangle tank2 = new MyRectangle(38, 28, 1, 1);
-    private int t1d = 3; //Erlojuko zenbakiekin bezala
+    private int t1d = 6; //Erlojuko zenbakiekin bezala
     private int t2d = 12;
 
     public void setT1d(int t1d) {

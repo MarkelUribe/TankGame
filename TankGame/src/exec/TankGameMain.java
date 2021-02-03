@@ -3,6 +3,7 @@ package exec;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.event.KeyEvent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import model.*;
@@ -13,6 +14,7 @@ public class TankGameMain extends JPanel {
 
     private static Map map1 = new Map(40, 30);
     private Tank t = new Tank();
+    private static int timer = 16;
     
     @Override
     public void paint(Graphics g) {
@@ -22,7 +24,7 @@ public class TankGameMain extends JPanel {
        
         g2d.setColor(Color.WHITE);
         t.TankeakMarraztu(g2d);
-        map1.drawGrid(g2d, false); //True to display the grid
+        map1.drawGrid(g2d, true); //True to display the grid
 
     }
     
@@ -41,13 +43,12 @@ public class TankGameMain extends JPanel {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setBackground(Color.BLACK);
         
-        
-        
+        // TIMER
         while (true) {
-            Thread.sleep(1000);
-            
-                    
-            
+           Thread.sleep(timer);
+
+               .KeyPressed(KeyEvent e);
+
                     
             
             
@@ -55,4 +56,5 @@ public class TankGameMain extends JPanel {
         }
         
     }
+    
 }
