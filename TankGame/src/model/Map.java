@@ -7,7 +7,7 @@ import java.awt.Graphics2D;
 public class Map {
 
         private MyPoint dimension;
-        private final int grid = 20;
+        private final int grid = 15;
 
         public Map(int p1, int p2) {
             MyPoint point = new MyPoint(p1, p2);

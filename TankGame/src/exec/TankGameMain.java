@@ -36,8 +36,8 @@ public class TankGameMain extends JPanel {
          */
         JFrame frame = new JFrame("TankGame");
         
-        frame.setSize(map1.getDimension().getX() * map1.getGrid() + map1.getGrid()-3,
-                map1.getDimension().getY() * map1.getGrid() +(map1.getGrid()*2));
+        frame.setSize(map1.getDimension().getX() * map1.getGrid() + (map1.getGrid()),
+                map1.getDimension().getY() * map1.getGrid() +(map1.getGrid()*3)-map1.getGrid()/2);
         frame.add(new TankGameMain());
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
