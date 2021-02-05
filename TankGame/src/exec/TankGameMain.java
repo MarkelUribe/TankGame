@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyAdapter;  
+import java.awt.event.KeyListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import model.*;
@@ -29,12 +30,17 @@ public class TankGameMain extends JPanel {
 
     }
     
+    public TankGameMain(){
+    KeyListener listener = new MyKeyListener();
+    addKeyListener(listener);
+    setFocusable(true);
+    }
     
-    public static void main(String[] args) throws InterruptedException {
-        /*
-            JFramearen konfigurazioa
-         */
+    
+    public static void main(String[] args) throws InterruptedException{
+
         JFrame frame = new JFrame("TankGame");
+        TankGameMain game = new TankGameMain();
         
         frame.setSize(map1.getDimension().getX() * map1.getGrid() + (map1.getGrid()),
                 map1.getDimension().getY() * map1.getGrid() +(map1.getGrid()*3)-map1.getGrid()/2);
@@ -46,26 +52,33 @@ public class TankGameMain extends JPanel {
         
         // TIMER
         while (true) {
-           Thread.sleep(timer);
-            frame.repaint();
+            game.repaint();
+            Thread.sleep(timer);
         }
-        
-        
-        
+           
     }
-    public class KeyInput extends KeyAdapter { 
+    public class MyKeyListener 
+            implements KeyListener {
         
         public void keyPressed(KeyEvent e) {
         Integer key = e.getKeyCode();
         if (key == KeyEvent.VK_LEFT) {
-            t.setT1Position(t.getT1X() + 1, t.getT1Y());
-        }
-        if (key == KeyEvent.VK_RIGHT) {
-            System.out.println("Pito");
+            System.out.println("Puta");
         }
         
-        repaint();
+        if (key == KeyEvent.VK_RIGHT) {
+            t.setT1Position(t.getT1X() - 1, t.getT1Y());
+        }
     }
+
+        @Override
+        public void keyTyped(KeyEvent e) {
+        }
+
+        @Override
+        public void keyReleased(KeyEvent e) {
+           
+        }
         
     }
 }
