@@ -67,12 +67,6 @@ public class Tank {
     return tank2.getTopLeft().getY();
     }
     
-    public boolean checkCollision(){
-        if (tank1.getTopLeft().getXY() == tank2.getTopLeft().getXY()){
-            return true;
-        }
-        return false;
-    }
 
     public void TankeakMarraztu(Graphics2D g, Map m) {
         int tamaina = ((m.getGrid()/5)*2);

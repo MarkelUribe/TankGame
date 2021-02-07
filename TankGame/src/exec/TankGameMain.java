@@ -14,10 +14,10 @@ import model.*;
 
 public class TankGameMain extends JPanel {
 
-    private static Map map1 = new Map(40, 30, 30);
+    private static Map map1 = new Map(40, 30, 20);
     private static Tank t = new Tank();
     private static int timer = 16;
-    private boolean gridon = false;
+    private boolean gridOn = false;
 
     private static boolean t1Tiro = false;
     private static boolean t2Tiro = false;
@@ -31,7 +31,7 @@ public class TankGameMain extends JPanel {
 
         g2d.setColor(Color.WHITE);
         t.TankeakMarraztu(g2d, map1);
-        map1.drawGrid(g2d, gridon); //True to display the grid
+        map1.drawGrid(g2d, gridOn); //True to display the grid
 
     }
 
@@ -146,7 +146,7 @@ public class TankGameMain extends JPanel {
             }
 
             //KOLISIOA// Ez dabil
-            if (t.checkCollision()) {
+            if (t.getTank1().getTopLeft()== t.getTank2().getTopLeft()) {
                 System.out.println("KOLISIOA!!");
             }
             
@@ -211,11 +211,11 @@ public class TankGameMain extends JPanel {
 
             //GRIDON
             if (key == KeyEvent.VK_G) {
-                if (gridon) {
-                    gridon = false;
+                if (gridOn) {
+                    gridOn = false;
                     System.out.println("Grid set to OFF");
                 } else {
-                    gridon = true;
+                    gridOn = true;
                     System.out.println("Grid set to ON");
                 }
             }
