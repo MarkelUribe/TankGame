@@ -14,7 +14,7 @@ import model.*;
 
 public class TankGameMain extends JPanel {
 
-    private static Map map1 = new Map(40, 30);
+    private static Map map1 = new Map(40, 30, 30);
     private static Tank t = new Tank();
     private static int timer = 16;
     private boolean gridon = false;
@@ -33,7 +33,7 @@ public class TankGameMain extends JPanel {
         Graphics2D g2d = (Graphics2D) g;
 
         g2d.setColor(Color.WHITE);
-        t.TankeakMarraztu(g2d);
+        t.TankeakMarraztu(g2d, map1);
         map1.drawGrid(g2d, gridon); //True to display the grid
 
     }
@@ -60,9 +60,6 @@ public class TankGameMain extends JPanel {
         int movementcicle = 0;
         int tirocicle = 0;
         while (true) {
-            frame.repaint();
-            Thread.sleep(timer);
-
             //MUGIMENDUA
             if (movementcicle == 15) {
                 if (t1Mov == true && t1MovCode == "a" && t.getT1d() == 9 && t.getT1X() - 1 >= 0) {
@@ -103,10 +100,19 @@ public class TankGameMain extends JPanel {
             //TIRO
             if (tirocicle == 60) {
 
+                tirocicle = 0;
+            }
+
+            //KOLISIOA// Ez dabil
+            if (t.checkCollision()) {
+                System.out.println("KOLISIOA!!");
             }
 
             tirocicle += 1;
             movementcicle += 1;
+
+            frame.repaint();
+            Thread.sleep(timer);
         }
 
     }
