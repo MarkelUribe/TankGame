@@ -14,13 +14,22 @@ import model.*;
 
 public class TankGameMain extends JPanel {
 
-    private static Map map1 = new Map(40, 30, 20);
-    private static Tank t = new Tank();
+    private static Map map1 = new Map(40, 30, 22);
+    private static Tank t = new Tank(map1);
     private static int timer = 16;
     private boolean gridOn = false;
 
     private static boolean t1Tiro = false;
     private static boolean t2Tiro = false;
+    
+    private static boolean t1TiroDraw = false;
+    private static boolean t2TiroDraw = false;
+    
+    private static MyPoint t1TiroPos = new MyPoint();
+    private static MyPoint t2TiroPos = new MyPoint();
+    
+    private static int t1TiroDir;
+    private static int t2TiroDir;
 
     private static String t1MovCode = "";
     private static String t2MovCode = "";
@@ -32,7 +41,9 @@ public class TankGameMain extends JPanel {
         g2d.setColor(Color.WHITE);
         t.TankeakMarraztu(g2d, map1);
         map1.drawGrid(g2d, gridOn); //True to display the grid
-
+        t.Tank1Tiro(g2d, map1, t1TiroDraw, t1TiroPos, t1TiroDir);
+        
+        
     }
 
     public TankGameMain() {
@@ -56,6 +67,7 @@ public class TankGameMain extends JPanel {
         // TIMER
         int movementcicle = 0;
         int tirocicle = 0;
+
         while (true) {
             //NORABIDEA
             //T1
@@ -130,27 +142,41 @@ public class TankGameMain extends JPanel {
                     System.out.println("T2Behera");
                     t2MovCode = "";
                 }
-                
-                t1Tiro = false;
-                t2Tiro = false;
+
                 movementcicle = 0;
             }
 
-            
-            
-            
             //TIRO
             if (tirocicle == 60) {
-
+                if (t1Tiro) {
+                    System.out.println("T1Tiro");
+                    t1TiroDraw = true;
+                    t1TiroPos = t.getTank1();
+                    t1TiroDir = t.getT1d();
+                }
+                if (t2Tiro) {
+                    
+                    System.out.println("T2Tiro");
+                }
+                
+                t1Tiro = false;
+                t2Tiro = false;
                 tirocicle = 0;
             }
-
-            //KOLISIOA// Ez dabil
-            if (t.getTank1().getTopLeft()== t.getTank2().getTopLeft()) {
-                System.out.println("KOLISIOA!!");
+            
+            //TIRO1 KALKULUA
+            if(t1TiroDraw = true){
+                if(t1TiroDir == 3){
+                    t1TiroPos = new MyPoint(t1TiroPos.getX()+1, t1TiroPos.getY());
+                }
             }
             
-            
+
+            //KOLISIOA// Ez dabil
+            if (t.getTank1() == t.getTank2()) {
+                System.out.println("KOLISIOA!!");
+            }
+
             tirocicle += 1;
             movementcicle += 1;
 
@@ -184,7 +210,7 @@ public class TankGameMain extends JPanel {
             }
             //T1Tiro
             if (key == KeyEvent.VK_SHIFT) {
-                System.out.println("T1Tiro");
+                t1Tiro = true;
             }
 
             //T2 KONTROLAK
@@ -206,7 +232,7 @@ public class TankGameMain extends JPanel {
             }
             //T2Tiro
             if (key == KeyEvent.VK_CONTROL) {
-                System.out.println("T2Tiro");
+                t2Tiro = true;
             }
 
             //GRIDON
