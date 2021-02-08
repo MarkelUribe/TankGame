@@ -14,7 +14,7 @@ import model.*;
 
 public class TankGameMain extends JPanel {
 
-    private static Map map1 = new Map(20, 15, 25);
+    private static Map map1 = new Map(40, 40, 10);
     private static Tank t = new Tank(map1);
     private static int timer = 16;
     private boolean gridOn = false;
