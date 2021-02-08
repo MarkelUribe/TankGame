@@ -124,6 +124,7 @@ public class TankGameMain extends JPanel {
                     System.out.println("T1Behera");
                     t1MovCode = "";
                 }
+                System.out.println(t.getTank1());
                 //T2
                 if (t2MovCode == "a" && t.getT2d() == 9 && t.getT2X() - 1 >= 0) {
                     System.out.println("T2Ezkerra");
@@ -175,7 +176,7 @@ public class TankGameMain extends JPanel {
                 }if(t1TiroDir == 12){
                     t1TiroPos = new MyPoint(t1TiroPos.getX(), t1TiroPos.getY()-1);
                 }
-                System.out.println(t1TiroPos);
+//                System.out.println(t1TiroPos);
             }
             
             if(t1TiroPos == t.getTank2() || t1TiroPos.getX() < 0 ||  t1TiroPos.getX() > map1.getDimension().getX() ||

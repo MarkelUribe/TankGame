@@ -95,7 +95,6 @@ public class Tank {
 
     public void TankeakMarraztu(Graphics2D g, Map m) {
         int tamaina = ((m.getGrid() / 5) * 2);
-
         //1.Tankea
         g.fillRect(tank1.getTopLeft().getX() * m.getGrid(), tank1.getTopLeft().getY() * m.getGrid(),
                 tank1.getBottomRight().getX() * m.getGrid(), tank1.getBottomRight().getY() * m.getGrid());
