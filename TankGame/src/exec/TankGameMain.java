@@ -175,6 +175,7 @@ public class TankGameMain extends JPanel {
                 }if(t1TiroDir == 12){
                     t1TiroPos = new MyPoint(t1TiroPos.getX(), t1TiroPos.getY()-1);
                 }
+                System.out.println(t1TiroPos);
             }
             
             if(t1TiroPos == t.getTank2() || t1TiroPos.getX() < 0 ||  t1TiroPos.getX() > map1.getDimension().getX() ||

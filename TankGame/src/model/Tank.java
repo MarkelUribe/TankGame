@@ -74,19 +74,20 @@ public class Tank {
 
     public void Tank1Tiro(Graphics2D g, Map m, boolean draw, MyPoint position, int direction) {
         int tamaina = ((m.getGrid() / 5) * 2);
+        MyPoint bt = tank1.getBottomRight();
         if (draw) {
             if (direction == 3) {
-                g.fillRect((position.getX() + 1) * m.getGrid(), position.getY() * m.getGrid() + tamaina,
-                        position.getX() * m.getGrid(), position.getY() * m.getGrid() / 5);
+                g.fillRect((position.getX()) * m.getGrid(), position.getY() * m.getGrid() + tamaina,
+                        bt.getX() * m.getGrid(), bt.getY() * m.getGrid() / 5);
             } else if (direction == 6) {
-                g.fillRect(position.getX() * m.getGrid() + tamaina, (position.getY() + 1) * m.getGrid(),
-                        position.getX() * m.getGrid() / 5, position.getY() * m.getGrid());
+                g.fillRect(position.getX() * m.getGrid() + tamaina, (position.getY()) * m.getGrid(),
+                        bt.getX() * m.getGrid() / 5, bt.getY() * m.getGrid());
             } else if (direction == 9) {
-                g.fillRect((position.getX() - 1) * m.getGrid(), position.getY() * m.getGrid() + tamaina,
-                        position.getX() * m.getGrid(), position.getY() * m.getGrid() / 5);
+                g.fillRect((position.getX()) * m.getGrid(), position.getY() * m.getGrid() + tamaina,
+                        bt.getX() * m.getGrid(), bt.getY() * m.getGrid() / 5);
             } else if (direction == 12) {
-                g.fillRect(position.getX() * m.getGrid() + tamaina, (position.getY() - 1) * m.getGrid(),
-                        position.getX() * m.getGrid() / 5, position.getY() * m.getGrid());
+                g.fillRect(position.getX() * m.getGrid() + tamaina, (position.getY()) * m.getGrid(),
+                        bt.getX() * m.getGrid() / 5, bt.getY() * m.getGrid());
             }
         }
 
