@@ -14,7 +14,7 @@ import model.*;
 
 public class TankGameMain extends JPanel {
 
-    private static Map map1 = new Map(40, 30, 22);
+    private static Map map1 = new Map(20, 15, 25);
     private static Tank t = new Tank(map1);
     private static int timer = 16;
     private boolean gridOn = false;
@@ -225,7 +225,7 @@ public class TankGameMain extends JPanel {
             }
             //T1Tiro
             if (key == KeyEvent.VK_SHIFT) {
-                t1Tiro = true;
+                    t1Tiro = true;
             }
 
             //T2 KONTROLAK
@@ -247,7 +247,7 @@ public class TankGameMain extends JPanel {
             }
             //T2Tiro
             if (key == KeyEvent.VK_CONTROL) {
-                t2Tiro = true;
+                    t2Tiro = true;
             }
 
             //GRIDON
@@ -268,7 +268,7 @@ public class TankGameMain extends JPanel {
 
         @Override
         public void keyReleased(KeyEvent e) {
-
+        
         }
 
     }
