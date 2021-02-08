@@ -72,9 +72,9 @@ public class Tank {
         return tank2.getTopLeft().getY();
     }
 
-    public void Tank1Tiro(Graphics2D g, Map m, boolean tiro, MyPoint position, int direction) {
+    public void Tank1Tiro(Graphics2D g, Map m, boolean draw, MyPoint position, int direction) {
         int tamaina = ((m.getGrid() / 5) * 2);
-        if (tiro) {
+        if (draw) {
             if (direction == 3) {
                 g.fillRect((position.getX() + 1) * m.getGrid(), position.getY() * m.getGrid() + tamaina,
                         position.getX() * m.getGrid(), position.getY() * m.getGrid() / 5);

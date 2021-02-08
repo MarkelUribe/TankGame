@@ -159,24 +159,37 @@ public class TankGameMain extends JPanel {
                     System.out.println("T2Tiro");
                 }
                 
+                tirocicle = 0;
                 t1Tiro = false;
                 t2Tiro = false;
-                tirocicle = 0;
             }
             
             //TIRO1 KALKULUA
             if(t1TiroDraw = true){
                 if(t1TiroDir == 3){
                     t1TiroPos = new MyPoint(t1TiroPos.getX()+1, t1TiroPos.getY());
+                }if(t1TiroDir == 6){
+                    t1TiroPos = new MyPoint(t1TiroPos.getX(), t1TiroPos.getY()+1);
+                }if(t1TiroDir == 9){
+                    t1TiroPos = new MyPoint(t1TiroPos.getX()-1, t1TiroPos.getY());
+                }if(t1TiroDir == 12){
+                    t1TiroPos = new MyPoint(t1TiroPos.getX(), t1TiroPos.getY()-1);
                 }
             }
             
-
-            //KOLISIOA// Ez dabil
+            if(t1TiroPos == t.getTank2() || t1TiroPos.getX() < 0 ||  t1TiroPos.getX() > map1.getDimension().getX() ||
+                    t1TiroPos.getY() < 0 ||  t1TiroPos.getY() > map1.getDimension().getY()){
+                t1TiroDraw = false;
+            }
+                    
+                    
+            //KOLISIOAK// Ez dabil
             if (t.getTank1() == t.getTank2()) {
                 System.out.println("KOLISIOA!!");
             }
-
+            if (t1TiroPos == t.getTank2()){
+                System.out.println("Tank1-ek Tank2-ri jo dio");
+            }
             tirocicle += 1;
             movementcicle += 1;
 
