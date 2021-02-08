@@ -63,6 +63,13 @@ public class MyPoint {
         this.x = x;
         this.y = y;
     }
+    
+    public boolean equals(MyPoint a){
+        if(x == a.x && y == a.y){
+            return true;
+        }
+        return false;
+    }
 
     @Override
     public String toString() {

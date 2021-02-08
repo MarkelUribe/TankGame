@@ -92,6 +92,27 @@ public class Tank {
         }
 
     }
+    
+    public void Tank2Tiro(Graphics2D g, Map m, boolean draw, MyPoint position, int direction) {
+        int tamaina = ((m.getGrid() / 5) * 2);
+        MyPoint bt = tank2.getBottomRight();
+        if (draw) {
+            if (direction == 3) {
+                g.fillRect((position.getX()) * m.getGrid(), position.getY() * m.getGrid() + tamaina,
+                        bt.getX() * m.getGrid(), bt.getY() * m.getGrid() / 5);
+            } else if (direction == 6) {
+                g.fillRect(position.getX() * m.getGrid() + tamaina, (position.getY()) * m.getGrid(),
+                        bt.getX() * m.getGrid() / 5, bt.getY() * m.getGrid());
+            } else if (direction == 9) {
+                g.fillRect((position.getX()) * m.getGrid(), position.getY() * m.getGrid() + tamaina,
+                        bt.getX() * m.getGrid(), bt.getY() * m.getGrid() / 5);
+            } else if (direction == 12) {
+                g.fillRect(position.getX() * m.getGrid() + tamaina, (position.getY()) * m.getGrid(),
+                        bt.getX() * m.getGrid() / 5, bt.getY() * m.getGrid());
+            }
+        }
+
+    }
 
     public void TankeakMarraztu(Graphics2D g, Map m) {
         int tamaina = ((m.getGrid() / 5) * 2);

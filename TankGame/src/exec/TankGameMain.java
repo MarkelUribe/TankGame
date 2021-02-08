@@ -45,6 +45,7 @@ public class TankGameMain extends JPanel {
         t.TankeakMarraztu(g2d, map1);
         map1.drawGrid(g2d, gridOn); //True to display the grid
         t.Tank1Tiro(g2d, map1, t1TiroDraw, t1TiroPos, t1TiroDir);
+        t.Tank2Tiro(g2d, map1, t2TiroDraw, t2TiroPos, t2TiroDir);
 
     }
 
@@ -68,8 +69,8 @@ public class TankGameMain extends JPanel {
 
         // TIMER
         int movementcicle = 0;
-        int tirocicle = 0;
-
+        int T1TiroCicle = 0;
+        int T2TiroCicle = 0;
         while (true) {
             //NORABIDEA
             //T1
@@ -151,28 +152,36 @@ public class TankGameMain extends JPanel {
 
             //TIRO
             if (t1Tiro) {
-                if (t1Tiro) {
-                    System.out.println("T1Tiro");
-                    t1TiroDraw = true;
-                    t1TiroPos = t.getTank1();
-                    t1TiroDir = t.getT1d();
-                }
-//                if (t2Tiro) {
-//                    
-//                    System.out.println("T2Tiro");
-//                }
+                System.out.println("T1Tiro");
+                t1TiroDraw = true;
+                t1TiroPos = t.getTank1();
+                t1TiroDir = t.getT1d();
                 t1TiroCool = true;
-
                 t1Tiro = false;
+            }
+            if (t2Tiro) {
+                System.out.println("T2Tiro");
+                t2TiroDraw = true;
+                t2TiroPos = t.getTank2();
+                t2TiroDir = t.getT2d();
+                t2TiroCool = true;
                 t2Tiro = false;
             }
 
             if (t1TiroCool) {
-                tirocicle += 1;
+                T1TiroCicle += 1;
             }
-            if(tirocicle == 60){
-                tirocicle = 0;
+            if (T1TiroCicle == 60) {
+                T1TiroCicle = 0;
                 t1TiroCool = false;
+            }
+            
+            if (t2TiroCool) {
+                T2TiroCicle += 1;
+            }
+            if (T2TiroCicle == 60) {
+                T2TiroCicle = 0;
+                t2TiroCool = false;
             }
 
             //TIRO1 KALKULUA
@@ -192,16 +201,39 @@ public class TankGameMain extends JPanel {
 //                System.out.println(t1TiroPos);
             }
 
-            if (t1TiroPos == t.getTank2() || t1TiroPos.getX() < 0 || t1TiroPos.getX() > map1.getDimension().getX()
+            if (t1TiroPos.equals(t.getTank2()) || t1TiroPos.getX() < 0 || t1TiroPos.getX() > map1.getDimension().getX()
                     || t1TiroPos.getY() < 0 || t1TiroPos.getY() > map1.getDimension().getY()) {
                 t1TiroDraw = false;
             }
 
+            
+            //TIRO2 KALKULUA
+            if (t2TiroDraw = true) {
+                if (t2TiroDir == 3) {
+                    t2TiroPos = new MyPoint(t2TiroPos.getX() + 1, t2TiroPos.getY());
+                }
+                if (t2TiroDir == 6) {
+                    t2TiroPos = new MyPoint(t2TiroPos.getX(), t2TiroPos.getY() + 1);
+                }
+                if (t2TiroDir == 9) {
+                    t2TiroPos = new MyPoint(t2TiroPos.getX() - 1, t2TiroPos.getY());
+                }
+                if (t2TiroDir == 12) {
+                    t2TiroPos = new MyPoint(t2TiroPos.getX(), t2TiroPos.getY() - 1);
+                }
+//                System.out.println(t2TiroPos);
+            }
+
+            if (t2TiroPos.equals(t.getTank1()) || t2TiroPos.getX() < 0 || t2TiroPos.getX() > map1.getDimension().getX()
+                    || t2TiroPos.getY() < 0 || t2TiroPos.getY() > map1.getDimension().getY()) {
+                t2TiroDraw = false;
+            }
+            
             //KOLISIOAK// Ez dabil
-            if (t.getTank1() == t.getTank2()) {
+            if (t.getTank1().equals(t.getTank2())) {
                 System.out.println("KOLISIOA!!");
             }
-            if (t1TiroPos == t.getTank2()) {
+            if (t1TiroPos.equals(t.getTank2())) {
                 System.out.println("Tank1-ek Tank2-ri jo dio");
             }
 
@@ -261,9 +293,9 @@ public class TankGameMain extends JPanel {
             }
             //T2Tiro
             if (key == KeyEvent.VK_CONTROL) {
-
-                t2Tiro = true;
-
+                if (t2TiroCool == false) {
+                    t2Tiro = true;
+                }
             }
 
             //GRIDON
