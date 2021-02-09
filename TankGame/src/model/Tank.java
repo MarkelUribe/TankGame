@@ -1,5 +1,6 @@
 package model;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import javax.swing.JFrame;
@@ -75,6 +76,7 @@ public class Tank {
     public void Tank1Tiro(Graphics2D g, Map m, boolean draw, MyPoint position, int direction) {
         int tamaina = ((m.getGrid() / 5) * 2);
         MyPoint bt = tank1.getBottomRight();
+        g.setColor(Color.BLUE);
         if (draw) {
             if (direction == 3) {
                 g.fillRect((position.getX()) * m.getGrid(), position.getY() * m.getGrid() + tamaina,
@@ -96,6 +98,7 @@ public class Tank {
     public void Tank2Tiro(Graphics2D g, Map m, boolean draw, MyPoint position, int direction) {
         int tamaina = ((m.getGrid() / 5) * 2);
         MyPoint bt = tank2.getBottomRight();
+        g.setColor(Color.ORANGE);
         if (draw) {
             if (direction == 3) {
                 g.fillRect((position.getX()) * m.getGrid(), position.getY() * m.getGrid() + tamaina,
@@ -117,13 +120,10 @@ public class Tank {
     public void TankeakMarraztu(Graphics2D g, Map m) {
         int tamaina = ((m.getGrid() / 5) * 2);
         //1.Tankea
+        g.setColor(Color.BLUE);
         g.fillRect(tank1.getTopLeft().getX() * m.getGrid(), tank1.getTopLeft().getY() * m.getGrid(),
                 tank1.getBottomRight().getX() * m.getGrid(), tank1.getBottomRight().getY() * m.getGrid());
-
-        //2.Tankea
-        g.fillRect(tank2.getTopLeft().getX() * m.getGrid(), tank2.getTopLeft().getY() * m.getGrid(),
-                tank2.getBottomRight().getX() * m.getGrid(), tank2.getBottomRight().getY() * m.getGrid());
-
+        
         //pistola1
         if (t1d == 3) {
             g.fillRect((tank1.getTopLeft().getX() + 1) * m.getGrid(), tank1.getTopLeft().getY() * m.getGrid() + tamaina,
@@ -144,6 +144,11 @@ public class Tank {
             g.fillRect(tank1.getTopLeft().getX() * m.getGrid() + tamaina, (tank1.getTopLeft().getY() - 1) * m.getGrid(),
                     tank1.getBottomRight().getX() * m.getGrid() / 5, tank1.getBottomRight().getY() * m.getGrid());
         }
+
+        //2.Tankea
+        g.setColor(Color.ORANGE);
+        g.fillRect(tank2.getTopLeft().getX() * m.getGrid(), tank2.getTopLeft().getY() * m.getGrid(),
+                tank2.getBottomRight().getX() * m.getGrid(), tank2.getBottomRight().getY() * m.getGrid());
 
         //pistola2
         if (t2d == 3) {

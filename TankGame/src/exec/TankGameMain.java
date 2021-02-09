@@ -14,7 +14,7 @@ import model.*;
 
 public class TankGameMain extends JPanel {
 
-    private static Map map1 = new Map(40, 40, 10);
+    private static Map map1 = new Map(40, 30, 20);
     private static Tank t = new Tank(map1);
     private static int timer = 16;
     private boolean gridOn = false;
@@ -41,7 +41,6 @@ public class TankGameMain extends JPanel {
     public void paint(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
 
-        g2d.setColor(Color.WHITE);
         t.TankeakMarraztu(g2d, map1);
         map1.drawGrid(g2d, gridOn); //True to display the grid
         t.Tank1Tiro(g2d, map1, t1TiroDraw, t1TiroPos, t1TiroDir);
