@@ -14,7 +14,7 @@ import static model.MyPoint.tiroHit;
 
 public class TankGameMain extends JPanel {
 
-    private static Map map1 = new Map(40, 30, 20);
+    private static Map map1 = new Map(40, 25, 25);
     private static Tank t = new Tank(map1);
     private static int timer = 60;
     private boolean gridOn = false;
@@ -31,8 +31,8 @@ public class TankGameMain extends JPanel {
     private static boolean t1MoveCool = false;
     private static boolean t2MoveCool = false;
 
-    private static MyPoint t1TiroPos = new MyPoint(1, 1);
-    private static MyPoint t2TiroPos = new MyPoint(0, 0);
+    private static MyPoint t1TiroPos = new MyPoint(-100, -100);
+    private static MyPoint t2TiroPos = new MyPoint(-99, -99);
 
     private static int t1TiroDir;
     private static int t2TiroDir;
@@ -219,7 +219,7 @@ public class TankGameMain extends JPanel {
             
 
             //TIRO1 KALKULUA
-            if (t1TiroDraw = true) {
+            if (t1TiroDraw) {
                 if (t1TiroDir == 3) {
                     t1TiroPos = new MyPoint(t1TiroPos.getX() + 1, t1TiroPos.getY());
                 }
@@ -237,11 +237,12 @@ public class TankGameMain extends JPanel {
             if (t1TiroPos.getX() < 0 || t1TiroPos.getX() > map1.getDimension().getX()
                     || t1TiroPos.getY() < 0 || t1TiroPos.getY() > map1.getDimension().getY()) {
                 t1TiroDraw = false;
+                t1TiroPos = new MyPoint(-100, -100);
             }
 
             
             //TIRO2 KALKULUA
-            if (t2TiroDraw = true) {
+            if (t2TiroDraw) {
                 if (t2TiroDir == 3) {
                     t2TiroPos = new MyPoint(t2TiroPos.getX() + 1, t2TiroPos.getY());
                 }
@@ -260,6 +261,7 @@ public class TankGameMain extends JPanel {
             if (t2TiroPos.getX() < 0 || t2TiroPos.getX() > map1.getDimension().getX()
                     || t2TiroPos.getY() < 0 || t2TiroPos.getY() > map1.getDimension().getY()) {
                 t2TiroDraw = false;
+                t2TiroPos = new MyPoint(-99, -99);
             }
             
             //KOLISIOAK
@@ -270,19 +272,23 @@ public class TankGameMain extends JPanel {
                 System.out.println("Balek elkarren aurka jo dute!");
                 t1TiroDraw = false;
                 t2TiroDraw = false;
+                t1TiroPos = new MyPoint(-100, -100);
+                t2TiroPos = new MyPoint(-99, -99);
             }
             //T1
             if (t1TiroPos.equals(t.getTank2())) {
                 System.out.println("Tank1-ek Tank2-ri jo dio");
                 t1TiroDraw = false;
+                t1TiroPos = new MyPoint(-100, -100);
             }
             //T2
             if (t2TiroPos.equals(t.getTank1())) {
                 System.out.println("Tank2-k Tank1-i jo dio");
                 t2TiroDraw = false;
+                t2TiroPos = new MyPoint(-99, -99);
             }
 
-
+            
             frame.repaint();
             Thread.sleep(1000/timer);
         }
