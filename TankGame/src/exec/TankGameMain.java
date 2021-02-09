@@ -27,6 +27,9 @@ public class TankGameMain extends JPanel {
 
     private static boolean t1TiroCool = false;
     private static boolean t2TiroCool = false;
+    
+    private static boolean t1MoveCool = false;
+    private static boolean t2MoveCool = false;
 
     private static MyPoint t1TiroPos = new MyPoint(1, 1);
     private static MyPoint t2TiroPos = new MyPoint(0, 0);
@@ -67,7 +70,8 @@ public class TankGameMain extends JPanel {
         frame.setBackground(Color.BLACK);
 
         // TIMER
-        int movementcicle = 0;
+        int T2MoveCicle = 0;
+        int T1MoveCicle = 0;
         int T1TiroCicle = 0;
         int T2TiroCicle = 0;
         while (true) {
@@ -107,46 +111,57 @@ public class TankGameMain extends JPanel {
                 t2MovCode = "";
             }
             //MUGIMENDUA
-            if (movementcicle == 15) {
+            if (t1MoveCool == false) {
                 //T1
                 if (t1MovCode == "a" && t.getT1d() == 9 && t.getT1X() - 1 >= 0) {
+                    t1MoveCool = true;
                     System.out.println("T1Ezkerra");
                     t.setT1Position(t.getT1X() - 1, t.getT1Y());
                     t1MovCode = "";
                 } else if (t1MovCode == "d" && t.getT1d() == 3 && t.getT1X() + 1 < map1.getDimension().getX()) {
+                    t1MoveCool = true;
                     t.setT1Position(t.getT1X() + 1, t.getT1Y());
                     System.out.println("T1Eskubi");
                     t1MovCode = "";
                 } else if (t1MovCode == "w" && t.getT1d() == 12 && t.getT1Y() - 1 >= 0) {
+                    t1MoveCool = true;
                     t.setT1Position(t.getT1X(), t.getT1Y() - 1);
                     System.out.println("T1Gora");
                     t1MovCode = "";
                 } else if (t1MovCode == "s" && t.getT1d() == 6 && t.getT1Y() + 1 < map1.getDimension().getY()) {
+                    t1MoveCool = true;
                     t.setT1Position(t.getT1X(), t.getT1Y() + 1);
                     System.out.println("T1Behera");
                     t1MovCode = "";
                 }
+            }
+            
+            if (t2MoveCool == false) {
                 //T2
                 if (t2MovCode == "a" && t.getT2d() == 9 && t.getT2X() - 1 >= 0) {
+                     t2MoveCool = true;
                     System.out.println("T2Ezkerra");
                     t.setT2Position(t.getT2X() - 1, t.getT2Y());
                     t2MovCode = "";
                 } else if (t2MovCode == "d" && t.getT2d() == 3 && t.getT2X() + 1 < map1.getDimension().getX()) {
+                    t2MoveCool = true;
                     t.setT2Position(t.getT2X() + 1, t.getT2Y());
                     System.out.println("T2Eskubi");
                     t2MovCode = "";
                 } else if (t2MovCode == "w" && t.getT2d() == 12 && t.getT2Y() - 1 >= 0) {
+                     t2MoveCool = true;
                     t.setT2Position(t.getT2X(), t.getT2Y() - 1);
                     System.out.println("T2Gora");
                     t2MovCode = "";
                 } else if (t2MovCode == "s" && t.getT2d() == 6 && t.getT2Y() + 1 < map1.getDimension().getY()) {
+                    t2MoveCool = true;
                     t.setT2Position(t.getT2X(), t.getT2Y() + 1);
                     System.out.println("T2Behera");
                     t2MovCode = "";
+                    
                 }
-
-                movementcicle = 0;
             }
+            
 
             //TIRO
             if (t1Tiro) {
@@ -181,6 +196,27 @@ public class TankGameMain extends JPanel {
                 T2TiroCicle = 0;
                 t2TiroCool = false;
             }
+            
+            if (t1MoveCool) {
+                T1MoveCicle += 1;
+            }
+            if (T1MoveCicle == 15) {
+                T1MoveCicle = 0;
+                t1MoveCool = false;
+            }
+            
+            if (t2MoveCool) {
+                T2MoveCicle += 1;
+            }
+            if (T2MoveCicle == 15) {
+                T2MoveCicle = 0;
+                t2MoveCool = false;
+            }
+            
+            
+  
+            
+            
 
             //TIRO1 KALKULUA
             if (t1TiroDraw = true) {
@@ -246,7 +282,6 @@ public class TankGameMain extends JPanel {
                 t2TiroDraw = false;
             }
 
-            movementcicle += 1;
 
             frame.repaint();
             Thread.sleep(timer);
