@@ -70,6 +70,24 @@ public class MyPoint {
         }
         return false;
     }
+    public static boolean tiroHit(MyPoint t, MyPoint b, int dir){
+        if(t.equals(b)) {
+            return true;
+        }else if (dir == 3 || dir == 9) {
+            MyPoint xt = new MyPoint(t.getX()-1, t.getY());
+            MyPoint xb = new MyPoint(b.getX()-1, b.getY());
+            if (xt.equals(xb)) {
+                return true;
+            }
+        }else if(dir == 12 || dir == 6){
+            MyPoint yt = new MyPoint(t.getY()-1, t.getX());
+            MyPoint yb = new MyPoint(b.getY()-1, b.getX());
+            if (yt.equals(yb)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     @Override
     public String toString() {

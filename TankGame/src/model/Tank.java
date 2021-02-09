@@ -72,6 +72,7 @@ public class Tank {
     public int getT2Y() {
         return tank2.getTopLeft().getY();
     }
+    
 
     public void Tank1Tiro(Graphics2D g, Map m, boolean draw, MyPoint position, int direction) {
         int tamaina = ((m.getGrid() / 5) * 2);

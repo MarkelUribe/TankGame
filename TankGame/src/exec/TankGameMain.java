@@ -4,11 +4,11 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyAdapter;
 import java.awt.event.KeyListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import model.*;
+import static model.MyPoint.tiroHit;
 
 @SuppressWarnings("serial")
 
@@ -16,7 +16,7 @@ public class TankGameMain extends JPanel {
 
     private static Map map1 = new Map(40, 30, 20);
     private static Tank t = new Tank(map1);
-    private static int timer = 16;
+    private static int timer = 60;
     private boolean gridOn = false;
 
     private static boolean t1Tiro = false;
@@ -266,7 +266,7 @@ public class TankGameMain extends JPanel {
             if (t.getTank1().equals(t.getTank2())) {
                 System.out.println("KOLISIOA!!");
             }
-            if (t1TiroPos.equals(t2TiroPos)) {
+            if (tiroHit(t1TiroPos, t2TiroPos, t1TiroDir)) {
                 System.out.println("Balek elkarren aurka jo dute!");
                 t1TiroDraw = false;
                 t2TiroDraw = false;
@@ -284,7 +284,7 @@ public class TankGameMain extends JPanel {
 
 
             frame.repaint();
-            Thread.sleep(timer);
+            Thread.sleep(1000/timer);
         }
 
     }
