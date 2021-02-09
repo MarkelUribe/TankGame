@@ -329,23 +329,28 @@ public class TankGameMain extends JPanel {
                 t1TiroDraw = false;
                 t1TiroPos = new MyPoint(-99, -99);
             }
+            
             if (p.getP1X() == t.getT1X() && p.getP1Y() == t.getT1Y()|| p.getP2X() == t.getT1X() && p.getP2Y() == t.getT1Y()|| p.getP3X() == t.getT1X() && p.getP3Y() == t.getT1Y()|| p.getP4X() == t.getT1X() && p.getP4Y() == t.getT1Y()){
                 
                 
                     //tank1
                     if(t.getT1d() == 3){
                     t.setT1Position(t.getT1X()-1, t.getT1Y());
+
                     }
                     if(t.getT1d() == 6){
                     t.setT1Position(t.getT1X(), t.getT1Y()-1);
+
                     }
 
                     if(t.getT1d() == 9){
                     t.setT1Position(t.getT1X()+1, t.getT1Y());
+
                     }
 
                     if(t.getT1d() == 12){
                     t.setT1Position(t.getT1X(), t.getT1Y()+1);
+
                     }
                 }
                 

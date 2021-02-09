@@ -22,7 +22,7 @@ public class Pared {
     }
     
     public int getP2X() {
-        return pared1.getTopLeft().getX();
+        return pared2.getTopLeft().getX();
     }
     
     public int getP3X() {
@@ -38,7 +38,7 @@ public class Pared {
     }
     
     public int getP2Y() {
-        return pared1.getTopLeft().getY();
+        return pared2.getTopLeft().getY();
     }
     
     public int getP3Y() {
