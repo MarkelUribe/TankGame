@@ -1,6 +1,7 @@
 
 package model;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 
 
@@ -37,6 +38,7 @@ public class Map {
         }
         
         public void drawGrid(Graphics2D g, boolean piztuta){
+             g.setColor(Color.WHITE);
             if (piztuta) {
                 // bertikalak
                 MyPoint a = new MyPoint(1, 0);
