@@ -28,8 +28,8 @@ public class TankGameMain extends JPanel {
     private static boolean t1TiroCool = false;
     private static boolean t2TiroCool = false;
 
-    private static MyPoint t1TiroPos = new MyPoint();
-    private static MyPoint t2TiroPos = new MyPoint();
+    private static MyPoint t1TiroPos = new MyPoint(1, 1);
+    private static MyPoint t2TiroPos = new MyPoint(0, 0);
 
     private static int t1TiroDir;
     private static int t2TiroDir;
@@ -127,7 +127,6 @@ public class TankGameMain extends JPanel {
                     System.out.println("T1Behera");
                     t1MovCode = "";
                 }
-                System.out.println(t.getTank1());
                 //T2
                 if (t2MovCode == "a" && t.getT2d() == 9 && t.getT2X() - 1 >= 0) {
                     System.out.println("T2Ezkerra");
@@ -232,6 +231,11 @@ public class TankGameMain extends JPanel {
             if (t.getTank1().equals(t.getTank2())) {
                 System.out.println("KOLISIOA!!");
             }
+            if (t1TiroPos.equals(t2TiroPos)) {
+                System.out.println("Balek elkarren aurka jo dute!");
+                t1TiroDraw = false;
+                t2TiroDraw = false;
+            }
             //T1
             if (t1TiroPos.equals(t.getTank2())) {
                 System.out.println("Tank1-ek Tank2-ri jo dio");
@@ -282,23 +286,23 @@ public class TankGameMain extends JPanel {
 
             //T2 KONTROLAK
             //T2Ezkerra
-            if (key == KeyEvent.VK_LEFT) {
+            if (key == KeyEvent.VK_J) {
                 t2MovCode = "a";
             }
             //T2Eskubi
-            if (key == KeyEvent.VK_RIGHT) {
+            if (key == KeyEvent.VK_L) {
                 t2MovCode = "d";
             }
             //T2Gora
-            if (key == KeyEvent.VK_UP) {
+            if (key == KeyEvent.VK_I) {
                 t2MovCode = "w";
             }
             //T2Behera
-            if (key == KeyEvent.VK_DOWN) {
+            if (key == KeyEvent.VK_K) {
                 t2MovCode = "s";
             }
             //T2Tiro
-            if (key == KeyEvent.VK_CONTROL) {
+            if (key == KeyEvent.VK_SPACE) {
                 if (t2TiroCool == false) {
                     t2Tiro = true;
                 }
