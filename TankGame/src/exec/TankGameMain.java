@@ -198,10 +198,9 @@ public class TankGameMain extends JPanel {
                 if (t1TiroDir == 12) {
                     t1TiroPos = new MyPoint(t1TiroPos.getX(), t1TiroPos.getY() - 1);
                 }
-//                System.out.println(t1TiroPos);
             }
 
-            if (t1TiroPos.equals(t.getTank2()) || t1TiroPos.getX() < 0 || t1TiroPos.getX() > map1.getDimension().getX()
+            if (t1TiroPos.getX() < 0 || t1TiroPos.getX() > map1.getDimension().getX()
                     || t1TiroPos.getY() < 0 || t1TiroPos.getY() > map1.getDimension().getY()) {
                 t1TiroDraw = false;
             }
@@ -224,17 +223,24 @@ public class TankGameMain extends JPanel {
 //                System.out.println(t2TiroPos);
             }
 
-            if (t2TiroPos.equals(t.getTank1()) || t2TiroPos.getX() < 0 || t2TiroPos.getX() > map1.getDimension().getX()
+            if (t2TiroPos.getX() < 0 || t2TiroPos.getX() > map1.getDimension().getX()
                     || t2TiroPos.getY() < 0 || t2TiroPos.getY() > map1.getDimension().getY()) {
                 t2TiroDraw = false;
             }
             
-            //KOLISIOAK// Ez dabil
+            //KOLISIOAK
             if (t.getTank1().equals(t.getTank2())) {
                 System.out.println("KOLISIOA!!");
             }
+            //T1
             if (t1TiroPos.equals(t.getTank2())) {
                 System.out.println("Tank1-ek Tank2-ri jo dio");
+                t1TiroDraw = false;
+            }
+            //T2
+            if (t2TiroPos.equals(t.getTank1())) {
+                System.out.println("Tank2-k Tank1-i jo dio");
+                t2TiroDraw = false;
             }
 
             movementcicle += 1;
