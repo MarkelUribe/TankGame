@@ -16,6 +16,7 @@ public class Map {
             dimension = point;
         }
 
+
         public int getGrid() {
             return grid;
         }

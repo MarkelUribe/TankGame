@@ -16,6 +16,7 @@ public class TankGameMain extends JPanel {
 
     private static Map map1 = new Map(40, 25, 25);
     private static Tank t = new Tank(map1);
+    private static Pared p = new Pared(map1);
     private static int timer = 60;
     private boolean gridOn = false;
 
@@ -45,6 +46,7 @@ public class TankGameMain extends JPanel {
         Graphics2D g2d = (Graphics2D) g;
 
         t.TankeakMarraztu(g2d, map1);
+        p.marraztuPared(g2d,map1);
         map1.drawGrid(g2d, gridOn); //True to display the grid
         t.Tank1Tiro(g2d, map1, t1TiroDraw, t1TiroPos, t1TiroDir);
         t.Tank2Tiro(g2d, map1, t2TiroDraw, t2TiroPos, t2TiroDir);
@@ -287,6 +289,87 @@ public class TankGameMain extends JPanel {
                 t2TiroDraw = false;
                 t2TiroPos = new MyPoint(-99, -99);
             }
+            
+            if (t2TiroPos.equals(p.getPared1())) {
+                t2TiroDraw = false;
+                t2TiroPos = new MyPoint(-99, -99);
+            }
+            
+            if (t2TiroPos.equals(p.getPared2())) {
+                t2TiroDraw = false;
+                t2TiroPos = new MyPoint(-99, -99);
+            }
+            
+            if (t2TiroPos.equals(p.getPared3())) {
+                t2TiroDraw = false;
+                t2TiroPos = new MyPoint(-99, -99);
+            }
+            
+            if (t2TiroPos.equals(p.getPared4())) {
+                t2TiroDraw = false;
+                t2TiroPos = new MyPoint(-99, -99);
+            }
+            
+            if (t1TiroPos.equals(p.getPared1())) {
+                t1TiroDraw = false;
+                t1TiroPos = new MyPoint(-99, -99);
+            }
+            
+            if (t1TiroPos.equals(p.getPared2())) {
+                t1TiroDraw = false;
+                t1TiroPos = new MyPoint(-99, -99);
+            }
+            
+            if (t1TiroPos.equals(p.getPared3())) {
+                t1TiroDraw = false;
+                t1TiroPos = new MyPoint(-99, -99);
+            }
+            
+            if (t1TiroPos.equals(p.getPared4())) {
+                t1TiroDraw = false;
+                t1TiroPos = new MyPoint(-99, -99);
+            }
+            if (p.getP1X() == t.getT1X() && p.getP1Y() == t.getT1Y()|| p.getP2X() == t.getT1X() && p.getP2Y() == t.getT1Y()|| p.getP3X() == t.getT1X() && p.getP3Y() == t.getT1Y()|| p.getP4X() == t.getT1X() && p.getP4Y() == t.getT1Y()){
+                
+                
+                    //tank1
+                    if(t.getT1d() == 3){
+                    t.setT1Position(t.getT1X()-1, t.getT1Y());
+                    }
+                    if(t.getT1d() == 6){
+                    t.setT1Position(t.getT1X(), t.getT1Y()-1);
+                    }
+
+                    if(t.getT1d() == 9){
+                    t.setT1Position(t.getT1X()+1, t.getT1Y());
+                    }
+
+                    if(t.getT1d() == 12){
+                    t.setT1Position(t.getT1X(), t.getT1Y()+1);
+                    }
+                }
+                
+                
+                //tank2
+                if (p.getP1X() == t.getT2X() && p.getP1Y() == t.getT2Y()|| p.getP2X() == t.getT2X() && p.getP2Y() == t.getT2Y()|| p.getP3X() == t.getT2X() && p.getP3Y() == t.getT2Y()|| p.getP4X() == t.getT2X() && p.getP4Y() == t.getT2Y()){
+   
+                    if(t.getT2d() == 3){
+                    t.setT2Position(t.getT2X()-1, t.getT2Y());
+                    }
+                    if(t.getT2d() == 6){
+                    t.setT2Position(t.getT2X(), t.getT2Y()-1);
+                    }
+
+                    if(t.getT2d() == 9){
+                    t.setT2Position(t.getT2X()+1, t.getT2Y());
+                    }
+
+                    if(t.getT2d() == 12){
+                    t.setT2Position(t.getT2X(), t.getT2Y()+1);
+
+            }
+        }
+            
 
             
             frame.repaint();
