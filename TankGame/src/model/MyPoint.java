@@ -63,36 +63,53 @@ public class MyPoint {
         this.x = x;
         this.y = y;
     }
-    
-    public boolean equals(MyPoint a){
-        if(x == a.x && y == a.y){
+
+    public boolean equals(MyPoint a) {
+        if (x == a.x && y == a.y) {
             return true;
         }
         return false;
     }
-    public static boolean tiroHit(MyPoint t, MyPoint b, int dir){
-        if(t.equals(b)) {
+
+    public boolean equals(ArrayList<Pared> ap) {
+        MyPoint p = new MyPoint(x, y);
+        for (int i = 0; i < ap.size(); i++) {
+            if (p.equals(ap.get(i).getPared())) {
+                return true;
+            }
+
+        }
+
+        return false;
+    }
+
+    public static boolean tiroHit(MyPoint t, MyPoint b, int dir) {
+        if (t.equals(b)) {
             return true;
-        } if (dir == 3 || dir == 9) {
-            MyPoint xt = new MyPoint(t.getX()-1, t.getY());
+        }
+        if (dir == 3 || dir == 9) {
+            MyPoint xt = new MyPoint(t.getX() - 1, t.getY());
             MyPoint xb = new MyPoint(b.getX(), b.getY());
             if (xt.equals(xb)) {
                 return true;
             }
-        } if(dir == 12 || dir == 6){
-            MyPoint yt = new MyPoint(t.getY()-1, t.getX());
+        }
+        if (dir == 12 || dir == 6) {
+            MyPoint yt = new MyPoint(t.getY() - 1, t.getX());
             MyPoint yb = new MyPoint(b.getY(), b.getX());
             if (yt.equals(yb)) {
                 return true;
             }
-        } if (dir == 3 || dir == 9) {
-            MyPoint xt = new MyPoint(t.getX()+1, t.getY());
+        }
+        if (dir == 3 || dir == 9) {
+            MyPoint xt = new MyPoint(t.getX() + 1, t.getY());
             MyPoint xb = new MyPoint(b.getX(), b.getY());
             if (xt.equals(xb)) {
                 return true;
             }
-        } if(dir == 12 || dir == 6){
-            MyPoint yt = new MyPoint(t.getY()+1, t.getX());
+        }
+        if (dir == 12 || dir == 6) {
+            MyPoint yt = new MyPoint(t.getY() + 1, t.getX());
             MyPoint yb = new MyPoint(b.getY(), b.getX());
             if (yt.equals(yb)) {
                 return true;

@@ -8,6 +8,7 @@ import java.awt.event.KeyListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import model.*;
+import java.util.ArrayList;
 import static model.MyPoint.tiroHit;
 
 @SuppressWarnings("serial")
@@ -16,9 +17,9 @@ public class TankGameMain extends JPanel {
 
     private static Map map1 = new Map(40, 30, 20);
     private static Tank t = new Tank(map1);
-    private static Pared p = new Pared(map1);
     private static int timer = 60;
     private boolean gridOn = false;
+    private static ArrayList<Pared> paretak = new ArrayList<Pared>();
 
     private static boolean t1Tiro = false;
     private static boolean t2Tiro = false;
@@ -44,12 +45,16 @@ public class TankGameMain extends JPanel {
     @Override
     public void paint(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
+        
+        for (int i = 0; i < 5; i++) {
+            paretak.add(new Pared(map1));
+        }
 
-        t.TankeakMarraztu(g2d, map1);
-        p.marraztuPared(g2d,map1);
+        Pared.marraztuPared(g2d, map1, paretak);
         map1.drawGrid(g2d, gridOn); //True to display the grid
         t.Tank1Tiro(g2d, map1, t1TiroDraw, t1TiroPos, t1TiroDir);
         t.Tank2Tiro(g2d, map1, t2TiroDraw, t2TiroPos, t2TiroDir);
+        
 
     }
 
@@ -290,47 +295,17 @@ public class TankGameMain extends JPanel {
                 t2TiroPos = new MyPoint(-99, -99);
             }
             
-            if (t2TiroPos.equals(p.getPared1())) {
+            if (t2TiroPos.equals(paretak)) {
                 t2TiroDraw = false;
-                t2TiroPos = new MyPoint(-99, -99);
+                t2TiroPos = new MyPoint(-100, -100);
             }
             
-            if (t2TiroPos.equals(p.getPared2())) {
-                t2TiroDraw = false;
-                t2TiroPos = new MyPoint(-99, -99);
-            }
-            
-            if (t2TiroPos.equals(p.getPared3())) {
-                t2TiroDraw = false;
-                t2TiroPos = new MyPoint(-99, -99);
-            }
-            
-            if (t2TiroPos.equals(p.getPared4())) {
-                t2TiroDraw = false;
-                t2TiroPos = new MyPoint(-99, -99);
-            }
-            
-            if (t1TiroPos.equals(p.getPared1())) {
+            if (t1TiroPos.equals(paretak)) {
                 t1TiroDraw = false;
                 t1TiroPos = new MyPoint(-99, -99);
             }
             
-            if (t1TiroPos.equals(p.getPared2())) {
-                t1TiroDraw = false;
-                t1TiroPos = new MyPoint(-99, -99);
-            }
-            
-            if (t1TiroPos.equals(p.getPared3())) {
-                t1TiroDraw = false;
-                t1TiroPos = new MyPoint(-99, -99);
-            }
-            
-            if (t1TiroPos.equals(p.getPared4())) {
-                t1TiroDraw = false;
-                t1TiroPos = new MyPoint(-99, -99);
-            }
-            
-            if (p.getP1X() == t.getT1X() && p.getP1Y() == t.getT1Y()|| p.getP2X() == t.getT1X() && p.getP2Y() == t.getT1Y()|| p.getP3X() == t.getT1X() && p.getP3Y() == t.getT1Y()|| p.getP4X() == t.getT1X() && p.getP4Y() == t.getT1Y()){
+            if (t.getTank1().equals(paretak)){
                 
                 
                     //tank1
@@ -356,7 +331,7 @@ public class TankGameMain extends JPanel {
                 
                 
                 //tank2
-                if (p.getP1X() == t.getT2X() && p.getP1Y() == t.getT2Y()|| p.getP2X() == t.getT2X() && p.getP2Y() == t.getT2Y()|| p.getP3X() == t.getT2X() && p.getP3Y() == t.getT2Y()|| p.getP4X() == t.getT2X() && p.getP4Y() == t.getT2Y()){
+                if (t.getTank2().equals(paretak)){
    
                     if(t.getT2d() == 3){
                     t.setT2Position(t.getT2X()-1, t.getT2Y());
