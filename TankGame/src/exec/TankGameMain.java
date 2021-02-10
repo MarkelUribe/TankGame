@@ -19,8 +19,10 @@ public class TankGameMain extends JPanel {
     private static Tank t = new Tank(map1);
     private static int timer = 60;
     private boolean gridOn = false;
-    private static ArrayList<Pared> paretak = new ArrayList<Pared>();
-
+    
+    private static Pared pareta = new Pared(map1);
+    private static ArrayList<Pared> paretak = pareta.InicializePared(map1, 5);
+    
     private static boolean t1Tiro = false;
     private static boolean t2Tiro = false;
 
@@ -46,10 +48,7 @@ public class TankGameMain extends JPanel {
     public void paint(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
         
-        for (int i = 0; i < 5; i++) {
-            paretak.add(new Pared(map1));
-        }
-
+        t.TankeakMarraztu(g2d, map1);
         Pared.marraztuPared(g2d, map1, paretak);
         map1.drawGrid(g2d, gridOn); //True to display the grid
         t.Tank1Tiro(g2d, map1, t1TiroDraw, t1TiroPos, t1TiroDir);
@@ -75,13 +74,18 @@ public class TankGameMain extends JPanel {
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setBackground(Color.BLACK);
-
+        
+        for (int i = 0; i < 5; i++) {
+            paretak.add(new Pared(map1));
+        }
+        
         // TIMER
         int T2MoveCicle = 0;
         int T1MoveCicle = 0;
         int T1TiroCicle = 0;
         int T2TiroCicle = 0;
         while (true) {
+        
             //NORABIDEA
             //T1
             if (t1MovCode == "a" && t.getT1d() != 9) {
