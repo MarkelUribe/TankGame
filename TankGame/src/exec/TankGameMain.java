@@ -14,7 +14,7 @@ import static model.MyPoint.tiroHit;
 
 public class TankGameMain extends JPanel {
 
-    private static Map map1 = new Map(40, 25, 25);
+    private static Map map1 = new Map(40, 30, 20);
     private static Tank t = new Tank(map1);
     private static Pared p = new Pared(map1);
     private static int timer = 60;
