@@ -20,8 +20,7 @@ public class TankGameMain extends JPanel {
     private static int timer = 60;
     private boolean gridOn = false;
     
-    private static Pared pareta = new Pared(map1);
-    private static ArrayList<Pared> paretak = pareta.InicializePared(map1, 5);
+    private static ArrayList<Pared> paretak = Pared.InicializePared(map1, 5);
     
     private static boolean t1Tiro = false;
     private static boolean t2Tiro = false;
@@ -65,7 +64,7 @@ public class TankGameMain extends JPanel {
 
     public static void main(String[] args) throws InterruptedException {
 
-        JFrame frame = new JFrame("TankGame");
+        JFrame frame = new JFrame("THE MOTHER F*CKING TankGame");
 
         frame.setSize(map1.getDimension().getX() * map1.getGrid() + (map1.getGrid()),
                 map1.getDimension().getY() * map1.getGrid() + (map1.getGrid() * 3) - map1.getGrid() / 2);
@@ -75,9 +74,7 @@ public class TankGameMain extends JPanel {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setBackground(Color.BLACK);
         
-        for (int i = 0; i < 5; i++) {
-            paretak.add(new Pared(map1));
-        }
+        
         
         // TIMER
         int T2MoveCicle = 0;
@@ -245,8 +242,8 @@ public class TankGameMain extends JPanel {
                 }
             }
 
-            if (t1TiroPos.getX() < 0 || t1TiroPos.getX() > map1.getDimension().getX()
-                    || t1TiroPos.getY() < 0 || t1TiroPos.getY() > map1.getDimension().getY()) {
+            if (t1TiroPos.getX() < 0 || t1TiroPos.getX() >= map1.getDimension().getX()
+                    || t1TiroPos.getY() < 0 || t1TiroPos.getY() >= map1.getDimension().getY()) {
                 t1TiroDraw = false;
                 t1TiroPos = new MyPoint(-100, -100);
             }

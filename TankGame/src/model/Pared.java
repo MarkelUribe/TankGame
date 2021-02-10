@@ -3,23 +3,26 @@ package model;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Pared {
 
     private static MyRectangle pareta;
 
     public Pared(Map m) {
-        pareta = new MyRectangle((int) (Math.random() * (m.getDimension().getX() - 1 + 1)), (int) (Math.random() * ((m.getDimension().getY() - 1) - 1 + 1)), 1, 1);
+        Random rnd = new Random();
+        pareta = new MyRectangle(rnd.nextInt(m.getDimension().getX()), rnd.nextInt(m.getDimension().getY()), 1, 1);
     }
 
     public Pared(MyRectangle r) {
         pareta = r;
     }
 
-    public ArrayList<Pared> InicializePared(Map m, int zenbat) {
+    public static ArrayList<Pared> InicializePared(Map m, int zenbat) {
+        Random rnd = new Random();
         ArrayList<Pared> paretak = new ArrayList<Pared>();
         for (int i = 0; i < zenbat; i++) {
-            paretak.add(new Pared(new MyRectangle((int) (Math.random() * (m.getDimension().getX() - 1 + 1)), (int) (Math.random() * ((m.getDimension().getY() - 1) - 1 + 1)), 1, 1)));
+            paretak.add(new Pared(new MyRectangle(rnd.nextInt(m.getDimension().getX()), rnd.nextInt(m.getDimension().getY()), 1, 1)));
         }
         return paretak;
     }
