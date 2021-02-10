@@ -13,7 +13,7 @@ import static model.MyPoint.tiroHit;
 
 @SuppressWarnings("serial")
 
-public class TankGameMain extends JPanel {
+public class  TankGameMain extends JPanel {
 
     private static Map map1 = new Map(40, 30, 20);
     private static Tank t = new Tank(map1);
