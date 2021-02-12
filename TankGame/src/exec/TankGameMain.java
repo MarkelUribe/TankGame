@@ -20,7 +20,7 @@ public class TankGameMain extends JPanel {
     private static int timer = 60;
     private boolean gridOn = false;
     
-    private static ArrayList<Pared> paretak = Pared.InicializePared(map1, 5);
+    private static ArrayList<Pared> paretak = Pared.InicializePared(map1, 8);
     
     private static boolean t1Tiro = false;
     private static boolean t2Tiro = false;
