@@ -17,7 +17,7 @@ import static model.MyPoint.tiroHit;
 
 public class TankGameMain extends JPanel {
 
-    private static Map map1 = new Map(42, 30, 20);
+    private static Map map1 = new Map(40, 30, 20);
     private static Tank t = new Tank(map1);
     private static int timer = 60;
     private boolean gridOn = false;
@@ -71,7 +71,12 @@ public class TankGameMain extends JPanel {
         JProgressBar progressBarT2 = new JProgressBar();
         frame.setSize((map1.getDimension().getX() + 1) * map1.getGrid(),
                 (map1.getDimension().getY() + 5) * map1.getGrid());
+
         frame.setBackground(Color.BLACK);
+        progressBarT1.setForeground(Color.ORANGE);
+        progressBarT2.setForeground(Color.BLUE);
+        frame.add(progressBarT1);
+        frame.add(progressBarT2);
         frame.add(new TankGameMain());
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
@@ -89,23 +94,18 @@ public class TankGameMain extends JPanel {
             if (map1.getDimension().getX() % 2 == 0) {
                 progressBarT1.setValue(t.getHP1());
                 progressBarT1.setBounds(((map1.getDimension().getX() / 2) + 1) * map1.getGrid(), ((map1.getDimension().getY() + 1) * map1.getGrid()), ((map1.getDimension().getX() / 2) - 2) * map1.getGrid(), 2 * map1.getGrid());
-                frame.add(progressBarT1);
-                progressBarT1.setForeground(Color.ORANGE);
 
                 progressBarT2.setValue(t.getHP2());
                 progressBarT2.setBounds(1 * map1.getGrid(), ((map1.getDimension().getY() + 1) * map1.getGrid()), ((map1.getDimension().getX() / 2) - 2) * map1.getGrid(), 2 * map1.getGrid());
-                frame.add(progressBarT2);
-                progressBarT2.setForeground(Color.BLUE);
+                
+                
             } else {
                 progressBarT1.setValue(t.getHP1());
                 progressBarT1.setBounds(((map1.getDimension().getX() / 2) + 2) * map1.getGrid(), ((map1.getDimension().getY() + 1) * map1.getGrid()), ((map1.getDimension().getX() / 2) - 2) * map1.getGrid(), 2 * map1.getGrid());
-                frame.add(progressBarT1);
-                progressBarT1.setForeground(Color.ORANGE);
 
                 progressBarT2.setValue(t.getHP2());
                 progressBarT2.setBounds(1 * map1.getGrid(), ((map1.getDimension().getY() + 1) * map1.getGrid()), ((map1.getDimension().getX() / 2) - 2) * map1.getGrid(), 2 * map1.getGrid());
-                frame.add(progressBarT2);
-                progressBarT2.setForeground(Color.BLUE);
+
             }
 
             //NORABIDEA
