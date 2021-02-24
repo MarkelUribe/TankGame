@@ -326,7 +326,8 @@ public class TankGameMain extends JPanel {
                 if (option == 0) {
                     t.setHP1(100);
                     t.setHP2(100);
-                    t.setT1Position(map1.getDimension().getX() - 2, map1.getDimension().getY() - 2);
+                    t.setT1Position(1,1);
+                    t.setT2Position(map1.getDimension().getX() - 2, map1.getDimension().getY() - 2);
                 }
                 if (option == 1) {
                     System.exit(0);
@@ -339,6 +340,7 @@ public class TankGameMain extends JPanel {
                 if (option == 0) {
                     t.setHP1(100);
                     t.setHP2(100);
+                    t.setT1Position(1,1);
                     t.setT2Position(map1.getDimension().getX() - 2, map1.getDimension().getY() - 2);
                 }
                 if (option == 1) {
