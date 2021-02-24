@@ -44,8 +44,6 @@ public class TankGameMain extends JPanel {
 
     private static String t1MovCode = "";
     private static String t2MovCode = "";
-    
-    
 
     @Override
     public void paint(Graphics g) {
@@ -64,6 +62,7 @@ public class TankGameMain extends JPanel {
         addKeyListener(listener);
         setFocusable(true);
     }
+    
 
     public static void main(String[] args) throws InterruptedException {
 
@@ -77,6 +76,8 @@ public class TankGameMain extends JPanel {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        
 
         // TIMER
         int T2MoveCicle = 0;
@@ -318,17 +319,32 @@ public class TankGameMain extends JPanel {
                 t.setHP2(t.getHP2() - t.getDMG1());
                 t2TiroPos = new MyPoint(-99, -99);
             }
-            
-            if (t.getHP1()==0){
-            int option;
-            option = JOptionPane.showConfirmDialog(null,"Try Again?", "Tank 2 Wins!", JOptionPane.YES_NO_OPTION);
-            if (option == )
-            }
-            
-            if (t.getHP2()==0){
-            JOptionPane.showConfirmDialog(null,"Try Againg? ", "Tank 1 Wins!", JOptionPane.YES_NO_OPTION);
+
+            if (t.getHP1() == 0) {
+                int option;
+                option = JOptionPane.showConfirmDialog(null, "Try Again?", "Tank 2 Wins!", JOptionPane.YES_NO_OPTION);
+                if (option == 0) {
+                    t.setHP1(100);
+                    t.setHP2(100);
+                    t.setT1Position(map1.getDimension().getX() - 2, map1.getDimension().getY() - 2);
+                }
+                if (option == 1) {
+                    System.exit(0);
+                }
             }
 
+            if (t.getHP2() == 0) {
+                int option;
+                option = JOptionPane.showConfirmDialog(null, "Try Again?", "Tank 2 Wins!", JOptionPane.YES_NO_OPTION);
+                if (option == 0) {
+                    t.setHP1(100);
+                    t.setHP2(100);
+                    t.setT2Position(map1.getDimension().getX() - 2, map1.getDimension().getY() - 2);
+                }
+                if (option == 1) {
+                    System.exit(0);
+                }
+            }
 
             if (t2TiroPos.equals(paretak)) {
                 t2TiroDraw = false;
