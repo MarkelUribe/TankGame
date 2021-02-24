@@ -20,7 +20,7 @@ public class TankGameMain extends JPanel {
     private static int timer = 60;
     private boolean gridOn = false;
     
-    private static ArrayList<Pared> paretak = Pared.InicializePared(map1, 8);
+    private static ArrayList<Pared> paretak = Pared.InicializePared(map1, 15);
     
     private static boolean t1Tiro = false;
     private static boolean t2Tiro = false;
@@ -64,10 +64,10 @@ public class TankGameMain extends JPanel {
 
     public static void main(String[] args) throws InterruptedException {
 
-        JFrame frame = new JFrame("THE MOTHER F*CKING TankGame");
+        JFrame frame = new JFrame("TankGame");
 
-        frame.setSize(map1.getDimension().getX() * map1.getGrid() + (map1.getGrid()),
-                map1.getDimension().getY() * map1.getGrid() + (map1.getGrid() * 3) - map1.getGrid() / 2);
+        frame.setSize((map1.getDimension().getX() + 1) * map1.getGrid(),
+                (map1.getDimension().getY() + 1) * map1.getGrid());
         frame.add(new TankGameMain());
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
