@@ -1,9 +1,8 @@
 package model;
 
 import java.awt.Color;
-import java.awt.Graphics;
 import java.awt.Graphics2D;
-import javax.swing.JFrame;
+
 
 public class Tank {
 
@@ -11,6 +10,11 @@ public class Tank {
     private MyRectangle tank2;
     private int t1d = 6; //Erlojuko zenbakiekin bezala
     private int t2d = 12;
+    private int HP1 = 100;
+    private int HP2 = 100;
+    private int DMG1 = 20;
+    private int DMG2 = 20;
+            
 
     public Tank(Map m) {
         tank1 = new MyRectangle(1, 1, 1, 1);
@@ -72,6 +76,40 @@ public class Tank {
     public int getT2Y() {
         return tank2.getTopLeft().getY();
     }
+
+    public int getHP1() {
+        return HP1;
+    }
+
+    public int getHP2() {
+        return HP2;
+    }
+
+    public int getDMG1() {
+        return DMG1;
+    }
+
+    public int getDMG2() {
+        return DMG2;
+    }
+
+    public void setHP1(int HP1) {
+        this.HP1 = HP1;
+    }
+
+    public void setHP2(int HP2) {
+        this.HP2 = HP2;
+    }
+
+    public void setDMG1(int DMG1) {
+        this.DMG1 = DMG1;
+    }
+
+    public void setDMG2(int DMG2) {
+        this.DMG2 = DMG2;
+    }
+    
+    
     
 
     public void Tank1Tiro(Graphics2D g, Map m, boolean draw, MyPoint position, int direction) {
