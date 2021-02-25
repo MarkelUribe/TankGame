@@ -89,21 +89,6 @@ public class TankGameMain extends JPanel {
         int T2TiroCicle = 0;
         while (true) {
 
-            if (map1.getDimension().getX() % 2 == 0) {
-                progressBarT1.setValue(t.getHP1());
-                progressBarT1.setBounds(((map1.getDimension().getX() / 2) + 1) * map1.getGrid(), ((map1.getDimension().getY() + 1) * map1.getGrid()), ((map1.getDimension().getX() / 2) - 2) * map1.getGrid(), 2 * map1.getGrid());
-
-                progressBarT2.setValue(t.getHP2());
-                progressBarT2.setBounds(1 * map1.getGrid(), ((map1.getDimension().getY() + 1) * map1.getGrid()), ((map1.getDimension().getX() / 2) - 2) * map1.getGrid(), 2 * map1.getGrid());
-                
-            } else {
-                progressBarT1.setValue(t.getHP1());
-                progressBarT1.setBounds(((map1.getDimension().getX() / 2) + 2) * map1.getGrid(), ((map1.getDimension().getY() + 1) * map1.getGrid()), ((map1.getDimension().getX() / 2) - 2) * map1.getGrid(), 2 * map1.getGrid());
-
-                progressBarT2.setValue(t.getHP2());
-                progressBarT2.setBounds(1 * map1.getGrid(), ((map1.getDimension().getY() + 1) * map1.getGrid()), ((map1.getDimension().getX() / 2) - 2) * map1.getGrid(), 2 * map1.getGrid());
-            }
-
             //NORABIDEA
             //T1
             if (t1MovCode == "a" && t.getT1d() != 9) {
@@ -318,7 +303,7 @@ public class TankGameMain extends JPanel {
 
             if (t.getHP1() == 0) {
                 int option;
-                option = JOptionPane.showConfirmDialog(null, "Try Again?", "Tank 2 Wins!", JOptionPane.YES_NO_OPTION);
+                option = JOptionPane.showConfirmDialog(null, "Try Again?", " Blue Tank Wins!", JOptionPane.YES_NO_OPTION);
                 if (option == 0) {
                     t.setHP1(100);
                     t.setHP2(100);
@@ -329,10 +314,10 @@ public class TankGameMain extends JPanel {
                     System.exit(0);
                 }
             }
-
+            
             if (t.getHP2() == 0) {
                 int option;
-                option = JOptionPane.showConfirmDialog(null, "Try Again?", "Tank 2 Wins!", JOptionPane.YES_NO_OPTION);
+                option = JOptionPane.showConfirmDialog(null, "Try Again?", "Yellow Tank Wins!", JOptionPane.YES_NO_OPTION);
                 if (option == 0) {
                     t.setHP1(100);
                     t.setHP2(100);
@@ -396,6 +381,24 @@ public class TankGameMain extends JPanel {
 
                 }
             }
+            
+            //BIZI BARRAK
+            
+            if (map1.getDimension().getX() % 2 == 0) {
+                progressBarT1.setValue(t.getHP1());
+                progressBarT1.setBounds(((map1.getDimension().getX() / 2) + 1) * map1.getGrid(), ((map1.getDimension().getY() + 1) * map1.getGrid()), ((map1.getDimension().getX() / 2) - 2) * map1.getGrid(), 2 * map1.getGrid());
+
+                progressBarT2.setValue(t.getHP2());
+                progressBarT2.setBounds(1 * map1.getGrid(), ((map1.getDimension().getY() + 1) * map1.getGrid()), ((map1.getDimension().getX() / 2) - 2) * map1.getGrid(), 2 * map1.getGrid());
+                
+            } else {
+                progressBarT1.setValue(t.getHP1());
+                progressBarT1.setBounds(((map1.getDimension().getX() / 2) + 2) * map1.getGrid(), ((map1.getDimension().getY() + 1) * map1.getGrid()), ((map1.getDimension().getX() / 2) - 2) * map1.getGrid(), 2 * map1.getGrid());
+
+                progressBarT2.setValue(t.getHP2());
+                progressBarT2.setBounds(1 * map1.getGrid(), ((map1.getDimension().getY() + 1) * map1.getGrid()), ((map1.getDimension().getX() / 2) - 2) * map1.getGrid(), 2 * map1.getGrid());
+            }
+
 
             frame.repaint();
             Thread.sleep(1000 / timer);
