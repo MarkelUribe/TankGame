@@ -383,7 +383,6 @@ public class TankGameMain extends JPanel {
             }
             
             //BIZI BARRAK
-            
             if (map1.getDimension().getX() % 2 == 0) {
                 progressBarT1.setValue(t.getHP1());
                 progressBarT1.setBounds(((map1.getDimension().getX() / 2) + 1) * map1.getGrid(), ((map1.getDimension().getY() + 1) * map1.getGrid()), ((map1.getDimension().getX() / 2) - 2) * map1.getGrid(), 2 * map1.getGrid());
