@@ -3,30 +3,38 @@ package model;
 import exec.*;
 import java.io.Serializable;
 import java.util.ArrayList;
+import javax.swing.JProgressBar;
 
-public class TicState implements Serializable{
-    private static Map map1;
-    private static Tank t = new Tank(map1);
-    private static int timer;
-    private boolean gridOn = false;
+public class TicState implements Serializable {
 
-    private static ArrayList<Pared> paretak;
+    int id;
 
-    private static boolean t1Tiro;
-    private static boolean t2Tiro;
+    Map map1;
+    Tank t;
+    int timer;
 
-    private static boolean t1TiroDraw;
-    private static boolean t2TiroDraw;
+    ArrayList<Pared> paretak;
 
-    private static MyPoint t1TiroPos;
-    private static MyPoint t2TiroPos;
+    boolean t1Tiro;
+    boolean t2Tiro;
 
-    private static int t1TiroDir;
-    private static int t2TiroDir;
+    boolean t1TiroDraw;
+    boolean t2TiroDraw;
 
-    public TicState(Map m, Tank t, int timer, ArrayList<Pared> paretak,
-                boolean t1TiroDraw, boolean t2TiroDraw, MyPoint t1TiroPos, 
-                MyPoint t2TiroPos, int t1TiroDir, int t2TiroDir) {
+    MyPoint t1TiroPos;
+    MyPoint t2TiroPos;
+
+    int t1TiroDir;
+    int t2TiroDir;
+
+    JProgressBar progressBarT1;
+    JProgressBar progressBarT2;
+
+    public TicState(int id, Map m, Tank t, int timer, ArrayList<Pared> paretak,
+            boolean t1TiroDraw, boolean t2TiroDraw, MyPoint t1TiroPos,
+            MyPoint t2TiroPos, int t1TiroDir, int t2TiroDir,
+            JProgressBar progressBarT1, JProgressBar progressBarT2) {
+        this.id = id;
         map1 = m;
         t = t;
         this.timer = timer;
@@ -37,111 +45,128 @@ public class TicState implements Serializable{
         this.t2TiroPos = t2TiroPos;
         this.t1TiroDir = t1TiroDir;
         this.t2TiroDir = t2TiroDir;
+        this.progressBarT1 = progressBarT1;
+        this.progressBarT2 = progressBarT2;
     }
 
-    public static void setMap1(Map map1) {
-        TicState.map1 = map1;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public static void setT(Tank t) {
-        TicState.t = t;
+    public void setMap1(Map map1) {
+        this.map1 = map1;
     }
 
-    public static void setTimer(int timer) {
-        TicState.timer = timer;
+    public void setT(Tank t) {
+        this.t = t;
     }
 
-    public void setGridOn(boolean gridOn) {
-        this.gridOn = gridOn;
+    public void setTimer(int timer) {
+        this.timer = timer;
     }
 
-    public static void setParetak(ArrayList<Pared> paretak) {
-        TicState.paretak = paretak;
+    public void setParetak(ArrayList<Pared> paretak) {
+        this.paretak = paretak;
     }
 
-    public static void setT1Tiro(boolean t1Tiro) {
-        TicState.t1Tiro = t1Tiro;
+    public void setT1Tiro(boolean t1Tiro) {
+        this.t1Tiro = t1Tiro;
     }
 
-    public static void setT2Tiro(boolean t2Tiro) {
-        TicState.t2Tiro = t2Tiro;
+    public void setT2Tiro(boolean t2Tiro) {
+        this.t2Tiro = t2Tiro;
     }
 
-    public static void setT1TiroDraw(boolean t1TiroDraw) {
-        TicState.t1TiroDraw = t1TiroDraw;
+    public void setT1TiroDraw(boolean t1TiroDraw) {
+        this.t1TiroDraw = t1TiroDraw;
     }
 
-    public static void setT2TiroDraw(boolean t2TiroDraw) {
-        TicState.t2TiroDraw = t2TiroDraw;
+    public void setT2TiroDraw(boolean t2TiroDraw) {
+        this.t2TiroDraw = t2TiroDraw;
     }
 
-    public static void setT1TiroPos(MyPoint t1TiroPos) {
-        TicState.t1TiroPos = t1TiroPos;
+    public void setT1TiroPos(MyPoint t1TiroPos) {
+        this.t1TiroPos = t1TiroPos;
     }
 
-    public static void setT2TiroPos(MyPoint t2TiroPos) {
-        TicState.t2TiroPos = t2TiroPos;
+    public void setT2TiroPos(MyPoint t2TiroPos) {
+        this.t2TiroPos = t2TiroPos;
     }
 
-    public static void setT1TiroDir(int t1TiroDir) {
-        TicState.t1TiroDir = t1TiroDir;
+    public void setT1TiroDir(int t1TiroDir) {
+        this.t1TiroDir = t1TiroDir;
     }
 
-    public static void setT2TiroDir(int t2TiroDir) {
-        TicState.t2TiroDir = t2TiroDir;
+    public void setT2TiroDir(int t2TiroDir) {
+        this.t2TiroDir = t2TiroDir;
     }
 
-    public static Map getMap1() {
+    public void setProgressBarT1(JProgressBar progressBarT1) {
+        this.progressBarT1 = progressBarT1;
+    }
+
+    public void setProgressBarT2(JProgressBar progressBarT2) {
+        this.progressBarT2 = progressBarT2;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public Map getMap1() {
         return map1;
     }
 
-    public static Tank getT() {
+    public Tank getT() {
         return t;
     }
 
-    public static int getTimer() {
+    public int getTimer() {
         return timer;
     }
 
-    public boolean isGridOn() {
-        return gridOn;
-    }
-
-    public static ArrayList<Pared> getParetak() {
+    public ArrayList<Pared> getParetak() {
         return paretak;
     }
 
-    public static boolean isT1Tiro() {
+    public boolean isT1Tiro() {
         return t1Tiro;
     }
 
-    public static boolean isT2Tiro() {
+    public boolean isT2Tiro() {
         return t2Tiro;
     }
 
-    public static boolean isT1TiroDraw() {
+    public boolean isT1TiroDraw() {
         return t1TiroDraw;
     }
 
-    public static boolean isT2TiroDraw() {
+    public boolean isT2TiroDraw() {
         return t2TiroDraw;
     }
 
-    public static MyPoint getT1TiroPos() {
+    public MyPoint getT1TiroPos() {
         return t1TiroPos;
     }
 
-    public static MyPoint getT2TiroPos() {
+    public MyPoint getT2TiroPos() {
         return t2TiroPos;
     }
 
-    public static int getT1TiroDir() {
+    public int getT1TiroDir() {
         return t1TiroDir;
     }
 
-    public static int getT2TiroDir() {
+    public int getT2TiroDir() {
         return t2TiroDir;
     }
 
-    
+    public JProgressBar getProgressBarT1() {
+        return progressBarT1;
+    }
+
+    public JProgressBar getProgressBarT2() {
+        return progressBarT2;
+    }
+
 }

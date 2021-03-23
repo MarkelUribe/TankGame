@@ -22,6 +22,9 @@ public class TankGameMain extends JPanel {
     private static int timer = 60;
     private boolean gridOn = false;
 
+    private static boolean record = true;
+    private static String fitxategia = "1_proba";
+
     private static ArrayList<Pared> paretak = Pared.InicializePared(map1, 15);
 
     private static boolean t1Tiro = false;
@@ -62,7 +65,6 @@ public class TankGameMain extends JPanel {
         addKeyListener(listener);
         setFocusable(true);
     }
-    
 
     public static void main(String[] args) throws InterruptedException {
 
@@ -81,8 +83,9 @@ public class TankGameMain extends JPanel {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
+
         // TIMER
+        int id = 0;
         int T2MoveCicle = 0;
         int T1MoveCicle = 0;
         int T1TiroCicle = 0;
@@ -307,21 +310,21 @@ public class TankGameMain extends JPanel {
                 if (option == 0) {
                     t.setHP1(100);
                     t.setHP2(100);
-                    t.setT1Position(1,1);
+                    t.setT1Position(1, 1);
                     t.setT2Position(map1.getDimension().getX() - 2, map1.getDimension().getY() - 2);
                 }
                 if (option == 1) {
                     System.exit(0);
                 }
             }
-            
+
             if (t.getHP2() == 0) {
                 int option;
                 option = JOptionPane.showConfirmDialog(null, "Try Again?", "Yellow Tank Wins!", JOptionPane.YES_NO_OPTION);
                 if (option == 0) {
                     t.setHP1(100);
                     t.setHP2(100);
-                    t.setT1Position(1,1);
+                    t.setT1Position(1, 1);
                     t.setT2Position(map1.getDimension().getX() - 2, map1.getDimension().getY() - 2);
                 }
                 if (option == 1) {
@@ -381,7 +384,7 @@ public class TankGameMain extends JPanel {
 
                 }
             }
-            
+
             //BIZI BARRAK
             if (map1.getDimension().getX() % 2 == 0) {
                 progressBarT1.setValue(t.getHP1());
@@ -389,7 +392,7 @@ public class TankGameMain extends JPanel {
 
                 progressBarT2.setValue(t.getHP2());
                 progressBarT2.setBounds(1 * map1.getGrid(), ((map1.getDimension().getY() + 1) * map1.getGrid()), ((map1.getDimension().getX() / 2) - 2) * map1.getGrid(), 2 * map1.getGrid());
-                
+
             } else {
                 progressBarT1.setValue(t.getHP1());
                 progressBarT1.setBounds(((map1.getDimension().getX() / 2) + 2) * map1.getGrid(), ((map1.getDimension().getY() + 1) * map1.getGrid()), ((map1.getDimension().getX() / 2) - 2) * map1.getGrid(), 2 * map1.getGrid());
@@ -398,6 +401,19 @@ public class TankGameMain extends JPanel {
                 progressBarT2.setBounds(1 * map1.getGrid(), ((map1.getDimension().getY() + 1) * map1.getGrid()), ((map1.getDimension().getX() / 2) - 2) * map1.getGrid(), 2 * map1.getGrid());
             }
 
+            //Grabazioa
+            if (record) {
+                
+                try {
+                    PartidaGorde.ticGehitu(new TicState(id, map1, t, timer, paretak,
+                            t1TiroDraw, t2TiroDraw, t1TiroPos,
+                            t2TiroPos, t1TiroDir, t2TiroDir,
+                            progressBarT1, progressBarT2), fitxategia);
+                    id++;
+                } catch (Exception e) {
+                    System.out.println("Grabatzeko arazoak");
+                }
+            }
 
             frame.repaint();
             Thread.sleep(1000 / timer);
