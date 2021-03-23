@@ -2,9 +2,10 @@
 package model;
 
 
+import java.io.Serializable;
 import model.MyPoint;
 
-public class MyRectangle {
+public class MyRectangle implements Serializable {
     private MyPoint topLeft;
     private MyPoint bottomRight;
     

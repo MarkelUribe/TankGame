@@ -5,6 +5,7 @@
  */
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -13,7 +14,7 @@ import java.util.Scanner;
  *
  * @author uribe.markel
  */
-public class MyPoint {
+public class MyPoint implements Serializable {
 
     private int x;
     private int y;

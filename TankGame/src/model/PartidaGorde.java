@@ -8,7 +8,7 @@ public class PartidaGorde {
     
     public static void ticGehitu(TicState t, String fitxategia){
         try {
-                FileOutputStream fout = new FileOutputStream(fitxategia+".dat");
+                FileOutputStream fout = new FileOutputStream("db/"+fitxategia+".dat");
                 ObjectOutputStream out = new ObjectOutputStream(fout);
                 out.writeObject(t);
 
@@ -23,11 +23,11 @@ public class PartidaGorde {
     public static TicState ticIrakurri(String fitxategia){
         FileInputStream fin = null;
         try {
-            fin = new FileInputStream(fitxategia);
+            fin = new FileInputStream("db/"+fitxategia);
             ObjectInputStream inStream = new ObjectInputStream(fin);
             TicState t;
             while (true) {
-                t = (TicState) inStream.readObject(); //
+                t = (TicState) inStream.readObject(); 
                 return t;
             }
         } catch (FileNotFoundException ex) {

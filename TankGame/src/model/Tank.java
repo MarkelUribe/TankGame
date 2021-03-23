@@ -2,9 +2,10 @@ package model;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.io.Serializable;
 
 
-public class Tank {
+public class Tank implements Serializable {
 
     private MyRectangle tank1;
     private MyRectangle tank2;

@@ -3,9 +3,10 @@ package model;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.io.Serializable;
 
 
-public class Map {
+public class Map implements Serializable {
 
         private MyPoint dimension;
         private int grid = 15;

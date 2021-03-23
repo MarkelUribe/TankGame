@@ -32,8 +32,7 @@ public class TicState implements Serializable {
 
     public TicState(int id, Map m, Tank t, int timer, ArrayList<Pared> paretak,
             boolean t1TiroDraw, boolean t2TiroDraw, MyPoint t1TiroPos,
-            MyPoint t2TiroPos, int t1TiroDir, int t2TiroDir,
-            JProgressBar progressBarT1, JProgressBar progressBarT2) {
+            MyPoint t2TiroPos, int t1TiroDir, int t2TiroDir) {
         this.id = id;
         map1 = m;
         t = t;
@@ -45,8 +44,6 @@ public class TicState implements Serializable {
         this.t2TiroPos = t2TiroPos;
         this.t1TiroDir = t1TiroDir;
         this.t2TiroDir = t2TiroDir;
-        this.progressBarT1 = progressBarT1;
-        this.progressBarT2 = progressBarT2;
     }
 
     public void setId(int id) {
@@ -101,14 +98,6 @@ public class TicState implements Serializable {
         this.t2TiroDir = t2TiroDir;
     }
 
-    public void setProgressBarT1(JProgressBar progressBarT1) {
-        this.progressBarT1 = progressBarT1;
-    }
-
-    public void setProgressBarT2(JProgressBar progressBarT2) {
-        this.progressBarT2 = progressBarT2;
-    }
-
     public int getId() {
         return id;
     }
@@ -159,14 +148,6 @@ public class TicState implements Serializable {
 
     public int getT2TiroDir() {
         return t2TiroDir;
-    }
-
-    public JProgressBar getProgressBarT1() {
-        return progressBarT1;
-    }
-
-    public JProgressBar getProgressBarT2() {
-        return progressBarT2;
     }
 
 }

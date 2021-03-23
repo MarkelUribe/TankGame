@@ -2,10 +2,11 @@ package model;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Pared {
+public class Pared implements Serializable {
 
     private MyRectangle pareta;
     private static int albo1;
