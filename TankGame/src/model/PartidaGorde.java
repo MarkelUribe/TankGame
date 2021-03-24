@@ -6,12 +6,20 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 public class PartidaGorde {
     
-    public static void ticGehitu(TicState t, String fitxategia){
+    public static ObjectOutputStream sortu(String fitxategia){
+        try{
+            FileOutputStream fout = new FileOutputStream("db/"+fitxategia+".dat");
+            ObjectOutputStream out = new ObjectOutputStream(fout);
+            return out;
+        }catch(Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+    
+    public static void ticGehitu(TicState t, ObjectOutputStream out){
         try {
-                FileOutputStream fout = new FileOutputStream("db/"+fitxategia+".dat");
-                ObjectOutputStream out = new ObjectOutputStream(fout);
                 out.writeObject(t);
-
                 //closing the stream    
                 //out.close();
                 //System.out.println("Datuak fitxategian idatzi dira.");
@@ -20,7 +28,9 @@ public class PartidaGorde {
             }
     }
     
-    public static TicState ticIrakurri(String fitxategia){
+    
+    
+    public static TicState ticIrakurri(String fitxategia, int id){
         FileInputStream fin = null;
         try {
             fin = new FileInputStream("db/"+fitxategia);
