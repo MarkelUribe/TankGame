@@ -16,7 +16,6 @@ public class Replay extends JPanel {
     private static Map map1;
     private static Tank t;
     private static int timer;
-    private boolean gridOn = false;
 
     private static ArrayList<Pared> paretak;
 
@@ -31,14 +30,13 @@ public class Replay extends JPanel {
 
     private static int t1TiroDir;
     private static int t2TiroDir;
-    
+
     @Override
     public void paint(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
 
         t.TankeakMarraztu(g2d, map1);
         Pared.marraztuPared(g2d, map1, paretak);
-        map1.drawGrid(g2d, gridOn); //True to display the grid
         t.Tank1Tiro(g2d, map1, t1TiroDraw, t1TiroPos, t1TiroDir);
         t.Tank2Tiro(g2d, map1, t2TiroDraw, t2TiroPos, t2TiroDir);
 
@@ -47,8 +45,8 @@ public class Replay extends JPanel {
     public Replay() {
         setFocusable(true);
     }
-    
-    public static void setState(TicState tic){
+
+    public static void setState(TicState tic) {
         map1 = tic.getMap1();
         t = tic.getT();
         timer = tic.getTimer();
@@ -64,11 +62,16 @@ public class Replay extends JPanel {
     }
 
     public static void main(String[] args) throws InterruptedException {
-        TicState tic = PartidaGorde.ticIrakurri("1_proba.dat", 1);
+        TicState tic = null;
+        try{
+            tic = PartidaGorde.ticIrakurri("1_proba.dat", 1);
+            setState(tic);
+        }catch(Exception e){
+            System.out.println("Fitxategi hori ez da existitzen.");
+            System.exit(0);
+        }
         
-        setState(tic);
         
-
         JFrame frame = new JFrame("TankGame");
         JProgressBar progressBarT1 = new JProgressBar();
         JProgressBar progressBarT2 = new JProgressBar();
@@ -80,18 +83,30 @@ public class Replay extends JPanel {
         progressBarT2.setForeground(Color.BLUE);
         frame.add(progressBarT1);
         frame.add(progressBarT2);
-        frame.add(new TankGameMain());
+        frame.add(new Replay());
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         while (true) {
-            t.setT1Position(t.getT1X()+1, t.getT1Y());
-            tic.setT(t);
-            
+
             setState(tic);
-            
-            
+
+            if (map1.getDimension().getX() % 2 == 0) {
+                progressBarT1.setValue(t.getHP1());
+                progressBarT1.setBounds(((map1.getDimension().getX() / 2) + 1) * map1.getGrid(), ((map1.getDimension().getY() + 1) * map1.getGrid()), ((map1.getDimension().getX() / 2) - 2) * map1.getGrid(), 2 * map1.getGrid());
+
+                progressBarT2.setValue(t.getHP2());
+                progressBarT2.setBounds(1 * map1.getGrid(), ((map1.getDimension().getY() + 1) * map1.getGrid()), ((map1.getDimension().getX() / 2) - 2) * map1.getGrid(), 2 * map1.getGrid());
+
+            } else {
+                progressBarT1.setValue(t.getHP1());
+                progressBarT1.setBounds(((map1.getDimension().getX() / 2) + 2) * map1.getGrid(), ((map1.getDimension().getY() + 1) * map1.getGrid()), ((map1.getDimension().getX() / 2) - 2) * map1.getGrid(), 2 * map1.getGrid());
+
+                progressBarT2.setValue(t.getHP2());
+                progressBarT2.setBounds(1 * map1.getGrid(), ((map1.getDimension().getY() + 1) * map1.getGrid()), ((map1.getDimension().getX() / 2) - 2) * map1.getGrid(), 2 * map1.getGrid());
+            }
+
             frame.repaint();
             Thread.sleep(1000 / timer);
         }

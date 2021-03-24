@@ -27,15 +27,12 @@ public class TicState implements Serializable {
     int t1TiroDir;
     int t2TiroDir;
 
-    JProgressBar progressBarT1;
-    JProgressBar progressBarT2;
-
     public TicState(int id, Map m, Tank t, int timer, ArrayList<Pared> paretak,
             boolean t1TiroDraw, boolean t2TiroDraw, MyPoint t1TiroPos,
             MyPoint t2TiroPos, int t1TiroDir, int t2TiroDir) {
         this.id = id;
         map1 = m;
-        t = t;
+        this.t = t;
         this.timer = timer;
         this.paretak = paretak;
         this.t1TiroDraw = t1TiroDraw;
