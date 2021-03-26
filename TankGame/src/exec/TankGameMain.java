@@ -33,7 +33,7 @@ public class TankGameMain extends JPanel {
     private boolean gridOn = false;
     private static int randomBg = (int) Math.round(Math.random());
 
-    private static boolean record = false;
+    private static boolean record = true;
     private static SimpleDateFormat sdf = new SimpleDateFormat("ss-dd-M-yyyy");
     private static String fitxategia = sdf.format(new Date());
 
@@ -128,13 +128,13 @@ public class TankGameMain extends JPanel {
         hasiB.addActionListener(e -> {
             frameM.setVisible(false);
             frameT.setVisible(true);
-            option = 0;
             record = true;
+            option = 0;
         });
         
         repB.addActionListener(e -> {
             frameM.setVisible(false);
-            frameR.setVisible(true);
+            replayMenu();
             option = 0;
         });
     }
@@ -155,7 +155,7 @@ public class TankGameMain extends JPanel {
         for (int i = 0; i < saves.size(); i++) {
             String bottomname = saves.get(i).getText();
             saves.get(i).addActionListener(e -> {
-                fitxategia = bottomname;
+                System.out.println(bottomname);
             });
             panelR.add(saves.get(i));
           }
@@ -167,12 +167,11 @@ public class TankGameMain extends JPanel {
         frameR.setMinimumSize(new Dimension(500, 550));
         frameR.setLocationRelativeTo(null);
         frameR.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frameR.setVisible(false);
+        frameR.setVisible(true);
     }
 
     public static void main(String[] args) throws InterruptedException {
         menu();
-        replayMenu();
         JProgressBar progressBarT1 = new JProgressBar();
         JProgressBar progressBarT2 = new JProgressBar();
         frameT.setSize((map1.getDimension().getX() + 1) * map1.getGrid(),
@@ -429,7 +428,6 @@ public class TankGameMain extends JPanel {
                     t.setT2Position(map1.getDimension().getX() - 2, map1.getDimension().getY() - 2);
                     frameM.setVisible(true);
                     frameT.setVisible(false);
-                    record = false;
                 }
             } else if (t.getHP1() == 0 && t.getHP2() != 0) {
                 option = JOptionPane.showConfirmDialog(null, "Try Again?", " Blue Tank Wins!", JOptionPane.YES_NO_OPTION);
@@ -447,7 +445,6 @@ public class TankGameMain extends JPanel {
                     t.setT2Position(map1.getDimension().getX() - 2, map1.getDimension().getY() - 2);
                     frameM.setVisible(true);
                     frameT.setVisible(false);
-                    record = false;
                 }
             } else if (t.getHP2() == 0 && t.getHP1() != 0) {
                 option = JOptionPane.showConfirmDialog(null, "Try Again?", "Yellow Tank Wins!", JOptionPane.YES_NO_OPTION);
@@ -465,7 +462,6 @@ public class TankGameMain extends JPanel {
                     t.setT2Position(map1.getDimension().getX() - 2, map1.getDimension().getY() - 2);
                     frameM.setVisible(true);
                     frameT.setVisible(false);
-                    record = false;
                 }
             }
 
