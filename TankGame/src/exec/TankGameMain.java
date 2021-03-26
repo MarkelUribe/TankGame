@@ -1,6 +1,7 @@
 package exec;
 
 import java.awt.Color;
+import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
@@ -12,6 +13,7 @@ import javax.swing.JPanel;
 import model.*;
 import java.util.ArrayList;
 import java.util.Date;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JProgressBar;
 import static model.MyPoint.tiroHit;
@@ -37,6 +39,10 @@ public class TankGameMain extends JPanel {
     private static boolean t1TiroDraw = false;
     private static boolean t2TiroDraw = false;
 
+    private static JFrame frameT = new JFrame("TankGame");
+    private static JFrame frameM = new JFrame("Menu");
+    private static int option;
+    
     private static boolean t1TiroCool = false;
     private static boolean t2TiroCool = false;
 
@@ -69,24 +75,42 @@ public class TankGameMain extends JPanel {
         addKeyListener(listener);
         setFocusable(true);
     }
+    
+    public static void menu() {
+    JPanel panelM = new JPanel();
+    panelM.setLayout(new FlowLayout());
+    JButton hasiButton = new JButton();
+    hasiButton.setText("Start Game!");
+    panelM.add(hasiButton);
+    frameM.add(panelM);
+    frameM.setSize(300, 300);
+    frameM.setLocationRelativeTo(null);
+    frameM.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    frameM.setVisible(true);
+    
+    hasiButton.addActionListener(e ->{
+        frameM.setVisible(false);
+        frameT.setVisible(true);
+        option = 0;
+      });
+    }
 
     public static void main(String[] args) throws InterruptedException {
-
-        JFrame frame = new JFrame("TankGame");
+        menu();
         JProgressBar progressBarT1 = new JProgressBar();
         JProgressBar progressBarT2 = new JProgressBar();
-        frame.setSize((map1.getDimension().getX() + 1) * map1.getGrid(),
+        frameT.setSize((map1.getDimension().getX() + 1) * map1.getGrid(),
                 (map1.getDimension().getY() + 5) * map1.getGrid());
 
-        frame.setBackground(Color.BLACK);
+        frameT.setBackground(Color.BLACK);
         progressBarT1.setForeground(Color.ORANGE);
         progressBarT2.setForeground(Color.BLUE);
-        frame.add(progressBarT1);
-        frame.add(progressBarT2);
-        frame.add(new TankGameMain());
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frameT.add(progressBarT1);
+        frameT.add(progressBarT2);
+        frameT.add(new TankGameMain());
+        frameT.setLocationRelativeTo(null);
+        frameT.setVisible(false);
+        frameT.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // TIMER
         int id = 0;
@@ -99,8 +123,6 @@ public class TankGameMain extends JPanel {
         if (record) {
             out = PartidaGorde.sortu(fitxategia);
         }
-    
-
     
         while (true) {
 
@@ -316,8 +338,27 @@ public class TankGameMain extends JPanel {
             t2TiroPos = new MyPoint(-99, -99);
         }
 
-        if (t.getHP1() == 0) {
-            int option;
+        if (t.getHP2() == 0 && t.getHP1() == 0) {
+            option = JOptionPane.showConfirmDialog(null, "Try Again?", "No one wins Tank Wins!", JOptionPane.YES_NO_OPTION);
+            if (option == 0) {
+                t.setHP1(100);
+                t.setHP2(100);
+                t.setT1Position(1, 1);
+                t.setT2Position(map1.getDimension().getX() - 2, map1.getDimension().getY() - 2);
+            }
+            if (option == 1){
+                option = 2;
+                t.setHP1(100);
+                t.setHP2(100);
+                t.setT1Position(1, 1);
+                t.setT2Position(map1.getDimension().getX() - 2, map1.getDimension().getY() - 2);
+                frameM.setVisible(true);
+                frameT.setVisible(false);
+            }
+        }
+        
+
+        else if (t.getHP1() == 0 && t.getHP2() != 0) {
             option = JOptionPane.showConfirmDialog(null, "Try Again?", " Blue Tank Wins!", JOptionPane.YES_NO_OPTION);
             if (option == 0) {
                 t.setHP1(100);
@@ -326,12 +367,17 @@ public class TankGameMain extends JPanel {
                 t.setT2Position(map1.getDimension().getX() - 2, map1.getDimension().getY() - 2);
             }
             if (option == 1) {
-                System.exit(0);
+                option = 2;
+                t.setHP1(100);
+                t.setHP2(100);
+                t.setT1Position(1, 1);
+                t.setT2Position(map1.getDimension().getX() - 2, map1.getDimension().getY() - 2);
+                frameM.setVisible(true);
+                frameT.setVisible(false);
             }
         }
 
-        if (t.getHP2() == 0) {
-            int option;
+        else if (t.getHP2() == 0 && t.getHP1() != 0) {
             option = JOptionPane.showConfirmDialog(null, "Try Again?", "Yellow Tank Wins!", JOptionPane.YES_NO_OPTION);
             if (option == 0) {
                 t.setHP1(100);
@@ -340,9 +386,16 @@ public class TankGameMain extends JPanel {
                 t.setT2Position(map1.getDimension().getX() - 2, map1.getDimension().getY() - 2);
             }
             if (option == 1) {
-                System.exit(0);
+                option = 2;
+                t.setHP1(100);
+                t.setHP2(100);
+                t.setT1Position(1, 1);
+                t.setT2Position(map1.getDimension().getX() - 2, map1.getDimension().getY() - 2);
+                frameM.setVisible(true);
+                frameT.setVisible(false);
             }
         }
+
 
         if (t2TiroPos.equals(paretak)) {
             t2TiroDraw = false;
@@ -426,7 +479,7 @@ public class TankGameMain extends JPanel {
             }
         }
 
-        frame.repaint();
+        frameT.repaint();
         Thread.sleep(1000 / timer);
     }
 
