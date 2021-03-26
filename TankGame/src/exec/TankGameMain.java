@@ -33,7 +33,7 @@ public class TankGameMain extends JPanel {
     private boolean gridOn = false;
     private static int randomBg = (int) Math.round(Math.random());
 
-    private static boolean record = true;
+    private static boolean record = false;
     private static SimpleDateFormat sdf = new SimpleDateFormat("ss-dd-M-yyyy");
     private static String fitxategia = sdf.format(new Date());
 
@@ -129,6 +129,7 @@ public class TankGameMain extends JPanel {
             frameM.setVisible(false);
             frameT.setVisible(true);
             option = 0;
+            record = true;
         });
         
         repB.addActionListener(e -> {
@@ -428,6 +429,7 @@ public class TankGameMain extends JPanel {
                     t.setT2Position(map1.getDimension().getX() - 2, map1.getDimension().getY() - 2);
                     frameM.setVisible(true);
                     frameT.setVisible(false);
+                    record = false;
                 }
             } else if (t.getHP1() == 0 && t.getHP2() != 0) {
                 option = JOptionPane.showConfirmDialog(null, "Try Again?", " Blue Tank Wins!", JOptionPane.YES_NO_OPTION);
@@ -445,6 +447,7 @@ public class TankGameMain extends JPanel {
                     t.setT2Position(map1.getDimension().getX() - 2, map1.getDimension().getY() - 2);
                     frameM.setVisible(true);
                     frameT.setVisible(false);
+                    record = false;
                 }
             } else if (t.getHP2() == 0 && t.getHP1() != 0) {
                 option = JOptionPane.showConfirmDialog(null, "Try Again?", "Yellow Tank Wins!", JOptionPane.YES_NO_OPTION);
@@ -462,6 +465,7 @@ public class TankGameMain extends JPanel {
                     t.setT2Position(map1.getDimension().getX() - 2, map1.getDimension().getY() - 2);
                     frameM.setVisible(true);
                     frameT.setVisible(false);
+                    record = false;
                 }
             }
 
