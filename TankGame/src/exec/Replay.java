@@ -12,6 +12,8 @@ import javax.swing.JProgressBar;
 @SuppressWarnings("serial")
 
 public class Replay extends JPanel {
+    
+    private static String fitxategia = "1_proba.dat";
 
     private static Map map1;
     private static Tank t;
@@ -64,7 +66,7 @@ public class Replay extends JPanel {
     public static void main(String[] args) throws InterruptedException {
         TicState tic = null;
         try{
-            tic = PartidaGorde.ticIrakurri("1_proba.dat", 1);
+            tic = PartidaGorde.ticIrakurri(fitxategia, 1);
             setState(tic);
         }catch(Exception e){
             System.out.println("Fitxategi hori ez da existitzen.");
@@ -89,7 +91,7 @@ public class Replay extends JPanel {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         while (true) {
-
+            
             setState(tic);
 
             if (map1.getDimension().getX() % 2 == 0) {

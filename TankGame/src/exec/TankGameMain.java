@@ -6,10 +6,12 @@ import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.ObjectOutputStream;
+import java.text.SimpleDateFormat;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import model.*;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.JProgressBar;
 import static model.MyPoint.tiroHit;
@@ -24,7 +26,8 @@ public class TankGameMain extends JPanel {
     private boolean gridOn = false;
 
     private static boolean record = true;
-    private static String fitxategia = "1_proba";
+    private static SimpleDateFormat sdf = new SimpleDateFormat("ss-dd-M-yyyy");
+    private static String fitxategia = sdf.format(new Date());
 
     private static ArrayList<Pared> paretak = Pared.InicializePared(map1, 15);
 
