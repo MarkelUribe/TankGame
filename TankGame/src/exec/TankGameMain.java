@@ -7,6 +7,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.File;
 import java.io.ObjectOutputStream;
 import java.text.SimpleDateFormat;
 import javax.swing.JFrame;
@@ -17,6 +18,7 @@ import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JProgressBar;
 import static model.MyPoint.tiroHit;
@@ -45,6 +47,7 @@ public class TankGameMain extends JPanel {
 
     private static JFrame frameT = new JFrame("TankGame");
     private static JFrame frameM = new JFrame("Menu");
+    private static JFrame frameR = new JFrame("Replay");
     private static int option;
 
     private static boolean t1TiroCool = false;
@@ -127,10 +130,48 @@ public class TankGameMain extends JPanel {
             frameT.setVisible(true);
             option = 0;
         });
+        
+        repB.addActionListener(e -> {
+            frameM.setVisible(false);
+            frameR.setVisible(true);
+            option = 0;
+        });
+    }
+    
+    public static void replayMenu() {
+        JPanel panelR = new JPanel();
+        ArrayList<JButton> saves = new ArrayList<JButton>();
+        
+        File path = new File("db\\");
+        File[] listOfFiles = path.listFiles();
+        
+
+        for (int i = 0; i < listOfFiles.length; i++) {
+          if (listOfFiles[i].isFile()) {
+            saves.add(new JButton (listOfFiles[i].getName()));
+          }
+        }
+        for (int i = 0; i < saves.size(); i++) {
+            String bottomname = saves.get(i).getText();
+            saves.get(i).addActionListener(e -> {
+                fitxategia = bottomname;
+            });
+            panelR.add(saves.get(i));
+          }
+        
+        
+        frameR.add(panelR);
+        frameR.setSize(500, 550);
+        frameR.setMaximumSize(new Dimension(500, 550));
+        frameR.setMinimumSize(new Dimension(500, 550));
+        frameR.setLocationRelativeTo(null);
+        frameR.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frameR.setVisible(false);
     }
 
     public static void main(String[] args) throws InterruptedException {
         menu();
+        replayMenu();
         JProgressBar progressBarT1 = new JProgressBar();
         JProgressBar progressBarT2 = new JProgressBar();
         frameT.setSize((map1.getDimension().getX() + 1) * map1.getGrid(),
