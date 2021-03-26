@@ -3,6 +3,7 @@ package exec;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.io.ObjectInputStream;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import model.*;
@@ -12,8 +13,8 @@ import javax.swing.JProgressBar;
 @SuppressWarnings("serial")
 
 public class Replay extends JPanel {
-    
-    private static String fitxategia = "1_proba.dat";
+
+    private static String fitxategia = "55-26-3-2021.dat";
 
     private static Map map1;
     private static Tank t;
@@ -65,15 +66,14 @@ public class Replay extends JPanel {
 
     public static void main(String[] args) throws InterruptedException {
         TicState tic = null;
-        try{
-            tic = PartidaGorde.ticIrakurri(fitxategia, 1);
+        try {
+            tic = PartidaGorde.ticIrakurri(fitxategia);
             setState(tic);
-        }catch(Exception e){
+        } catch (Exception e) {
             System.out.println("Fitxategi hori ez da existitzen.");
             System.exit(0);
         }
-        
-        
+
         JFrame frame = new JFrame("TankGame");
         JProgressBar progressBarT1 = new JProgressBar();
         JProgressBar progressBarT2 = new JProgressBar();
@@ -89,10 +89,9 @@ public class Replay extends JPanel {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+        
         while (true) {
-            
-            setState(tic);
+            setState(PartidaGorde.ticIrakurri(fitxategia));
 
             if (map1.getDimension().getX() % 2 == 0) {
                 progressBarT1.setValue(t.getHP1());
