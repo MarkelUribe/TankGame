@@ -2,7 +2,6 @@ package exec;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -82,7 +81,7 @@ public class TankGameMain extends JPanel {
 
     public static void menu() {
         JPanel panelM = new JPanel();
-        String BGruta = "";
+        String BGruta;
         if (randomBg == 1) {
             BGruta = "BGblue.png";
         } else {
@@ -90,25 +89,29 @@ public class TankGameMain extends JPanel {
         }
         ImageIcon img = new ImageIcon("bg/" + BGruta);
         JLabel background = new JLabel("", img, JLabel.CENTER);
-        JLabel title = new JLabel();
+        
         background.setSize(500, 500);
         background.setVisible(true);
         background.setBounds(0, 0, 500, 500);
         panelM.add(background);
         
-        
+        JLabel title = new JLabel("TANK GAME");
         JButton hasiB = new JButton("Start Game!");
         JButton repB = new JButton("Whatch Replays!");
         hasiB.setBounds(250, 80, 180, 50);
-        repB.setBounds(240, 140, 200, 50);
+        repB.setBounds(240, 150, 200, 50);
+        title.setBounds(250, 10, 180, 50);
         hasiB.setBackground(Color.BLACK);
         repB.setBackground(Color.BLACK);
         hasiB.setForeground(Color.WHITE);
         repB.setForeground(Color.WHITE);
+        title.setForeground(Color.WHITE);
         hasiB.setFont(new Font("Dialog", Font.BOLD, 20));
         repB.setFont(new Font("Dialog", Font.BOLD, 20));
+        title.setFont(new Font("Dialog", Font.BOLD, 30));
         background.add(hasiB);
         background.add(repB);
+        background.add(title);
 
         frameM.add(panelM);
         frameM.setSize(500, 550);
@@ -512,6 +515,7 @@ public class TankGameMain extends JPanel {
     public class MyKeyListener
             implements KeyListener {
 
+        @Override
         public void keyPressed(KeyEvent e) {
             Integer key = e.getKeyCode();
             //T1 KONTROLAK
