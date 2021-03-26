@@ -65,9 +65,10 @@ public class Replay extends JPanel {
     }
 
     public static void main(String[] args) throws InterruptedException {
+        int ticId = 0;
         TicState tic = null;
         try {
-            tic = PartidaGorde.ticIrakurri(fitxategia);
+            tic = PartidaGorde.ticIrakurri(fitxategia, ticId);
             setState(tic);
         } catch (Exception e) {
             System.out.println("Fitxategi hori ez da existitzen.");
@@ -91,7 +92,7 @@ public class Replay extends JPanel {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         while (true) {
-            setState(PartidaGorde.ticIrakurri(fitxategia));
+            setState(PartidaGorde.ticIrakurri(fitxategia, ticId));
 
             if (map1.getDimension().getX() % 2 == 0) {
                 progressBarT1.setValue(t.getHP1());
@@ -107,7 +108,10 @@ public class Replay extends JPanel {
                 progressBarT2.setValue(t.getHP2());
                 progressBarT2.setBounds(1 * map1.getGrid(), ((map1.getDimension().getY() + 1) * map1.getGrid()), ((map1.getDimension().getX() / 2) - 2) * map1.getGrid(), 2 * map1.getGrid());
             }
-
+            
+            t.setT2Position(t.getT2X()+1, t.getT2Y());
+            
+            ticId ++;
             frame.repaint();
             Thread.sleep(1000 / timer);
         }

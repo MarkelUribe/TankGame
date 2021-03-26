@@ -195,7 +195,7 @@ public class TankGameMain extends JPanel {
 
         ObjectOutputStream out = null;
         if (record) {
-            out = PartidaGorde.sortu(fitxategia);
+            out = PartidaGorde.idatziSortu(fitxategia);
         }
 
         while (true) {
