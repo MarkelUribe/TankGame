@@ -34,7 +34,7 @@ public class TankGameMain extends JPanel {
     private static int randomBg = (int) Math.round(Math.random());
 
     private static boolean record = true;
-    private static SimpleDateFormat sdf = new SimpleDateFormat("ss-dd-M-yyyy");
+    private static SimpleDateFormat sdf = new SimpleDateFormat("ss-mm-dd-M-yyyy");
     private static String fitxategia = sdf.format(new Date());
 
     private static ArrayList<Pared> paretak = Pared.InicializePared(map1, 15);
