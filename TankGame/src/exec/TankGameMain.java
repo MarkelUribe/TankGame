@@ -8,7 +8,11 @@ import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.File;
+import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -18,9 +22,12 @@ import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JList;
+import java.nio.file.StandardCopyOption;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JProgressBar;
+import javax.swing.JTextField;
 import static model.MyPoint.tiroHit;
 
 @SuppressWarnings("serial")
@@ -47,7 +54,6 @@ public class TankGameMain extends JPanel {
 
     private static JFrame frameT = new JFrame("TankGame");
     private static JFrame frameM = new JFrame("Menu");
-    private static JFrame frameR = new JFrame("Replay");
     private static int option;
 
     private static boolean t1TiroCool = false;
@@ -92,12 +98,12 @@ public class TankGameMain extends JPanel {
         }
         ImageIcon img = new ImageIcon("bg/" + BGruta);
         JLabel background = new JLabel("", img, JLabel.CENTER);
-        
+
         background.setSize(500, 500);
         background.setVisible(true);
         background.setBounds(0, 0, 500, 500);
         panelM.add(background);
-        
+
         JLabel title = new JLabel("TANK GAME");
         JButton hasiB = new JButton("Start Game!");
         JButton repB = new JButton("Whatch Replays!");
@@ -131,43 +137,69 @@ public class TankGameMain extends JPanel {
             record = true;
             option = 0;
         });
-        
+
         repB.addActionListener(e -> {
             frameM.setVisible(false);
             replayMenu();
             option = 0;
         });
     }
-    
-    public static void replayMenu() {
-        JPanel panelR = new JPanel();
-        ArrayList<JButton> saves = new ArrayList<JButton>();
-        
-        File path = new File("db\\");
-        File[] listOfFiles = path.listFiles();
-        
 
-        for (int i = 0; i < listOfFiles.length; i++) {
-          if (listOfFiles[i].isFile()) {
-            saves.add(new JButton (listOfFiles[i].getName()));
-          }
-        }
-        for (int i = 0; i < saves.size(); i++) {
-            String bottomname = saves.get(i).getText();
-            saves.get(i).addActionListener(e -> {
-                System.out.println(bottomname);
-            });
-            panelR.add(saves.get(i));
-          }
-        
-        
-        frameR.add(panelR);
+    public static void replayMenu() {
+
+        JFrame frameR = new JFrame();
         frameR.setSize(500, 550);
-        frameR.setMaximumSize(new Dimension(500, 550));
-        frameR.setMinimumSize(new Dimension(500, 550));
-        frameR.setLocationRelativeTo(null);
         frameR.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frameR.setVisible(true);
+
+        JPanel panelR = new JPanel();
+        panelR.setSize(500, 550);
+
+        JLabel cnLabel = new JLabel();
+        cnLabel.setText("Click the file then change the name");
+        cnLabel.setBounds(155, 400, 200, 50);
+
+        JTextField changeName = new JTextField();
+        changeName.setText("");
+        changeName.setBounds(170, 450, 150, 50);
+
+        JButton cnButton = new JButton("Change");
+        cnButton.setBounds(320, 450, 80, 49);
+
+        frameR.add(changeName);
+        frameR.add(cnButton);
+        frameR.add(cnLabel);
+        frameR.add(panelR);
+
+        ArrayList<JButton> saves = new ArrayList<>();
+        File path = new File("db\\");
+        File[] listOfFiles = path.listFiles();
+
+        for (int i = 1; i < listOfFiles.length; i++) {
+            if (listOfFiles[i].isFile()) {
+                saves.add(new JButton(listOfFiles[i].getName()));
+            }
+        }
+
+        for (int i = 0; i < saves.size(); i++) {
+            String bottomname = saves.get(i).getText();
+            int bottomint = i;
+
+            saves.get(i).addActionListener(e -> {
+                changeName.setText(bottomname);
+
+                cnButton.addActionListener(j -> {
+                    Path source = Paths.get("db\\" + bottomname);
+                    try {
+                        saves.get(bottomint).setText(changeName.getText());
+                        Files.move(source, source.resolveSibling(changeName.getText()), StandardCopyOption.REPLACE_EXISTING);
+                    } catch (IOException ex) {
+                        Logger.getLogger(TankGameMain.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                });
+            });
+            panelR.add(saves.get(i));
+        }
     }
 
     public static void main(String[] args) throws InterruptedException {

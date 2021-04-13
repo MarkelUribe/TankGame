@@ -14,7 +14,7 @@ import javax.swing.JProgressBar;
 
 public class Replay extends JPanel {
 
-    private static String fitxategia = "55-26-3-2021.dat";
+    private static String fitxategia = "22-26-3-2021.dat";
 
     private static Map map1;
     private static Tank t;
@@ -108,8 +108,6 @@ public class Replay extends JPanel {
                 progressBarT2.setValue(t.getHP2());
                 progressBarT2.setBounds(1 * map1.getGrid(), ((map1.getDimension().getY() + 1) * map1.getGrid()), ((map1.getDimension().getX() / 2) - 2) * map1.getGrid(), 2 * map1.getGrid());
             }
-            
-            t.setT2Position(t.getT2X()+1, t.getT2Y());
             
             ticId ++;
             frame.repaint();
