@@ -591,6 +591,9 @@ public class TankGameMain extends JPanel {
                             t1TiroDraw, t2TiroDraw, t1TiroPos,
                             t2TiroPos, t1TiroDir, t2TiroDir), out);
                     id++;
+                    if(id % 1 == 0){
+                        out.reset();
+                    }
                 } catch (Exception e) {
                     System.out.println("Grabatzeko arazoak");
                 }

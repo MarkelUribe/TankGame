@@ -3,17 +3,23 @@ package exec;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import model.*;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JProgressBar;
 
 @SuppressWarnings("serial")
 
 public class Replay extends JPanel {
 
-    private static String fitxategia = "49-41-13-4-2021.dat";
+    private static String fitxategia = "29-22-14-4-2021.dat";
 
     private static Map map1;
     private static Tank t;
@@ -63,17 +69,34 @@ public class Replay extends JPanel {
         t2TiroDir = tic.getT2TiroDir();
     }
 
-    public static void main(String[] args) throws InterruptedException {
-        int ticId = 0;
+    public static void main(String[] args) throws InterruptedException, IOException, ClassNotFoundException {
+
         TicState tic = null;
+        FileInputStream fin = null;
+        ObjectInputStream inStream = null;
+
         try {
-            tic = PartidaGorde.ticIrakurri(fitxategia, ticId);
+            fin = new FileInputStream("db/" + fitxategia);
+            inStream = new ObjectInputStream(fin);
+            tic = (TicState) inStream.readObject();
             setState(tic);
-        } catch (Exception e) {
-            System.out.println("Fitxategi hori ez da existitzen.");
-            System.exit(0);
+        } catch (FileNotFoundException ex) {
+            System.out.println("Fitxategia ez dago bere lekuan.");
+        } catch (IOException ex) {
+            System.out.println("Ez dago objektu gehiagorik.");
+        } catch (ClassNotFoundException ex) {
+            System.out.println("ClassNotFound Salbuespena gertatu da.");
         }
 
+//        int ticId = 0;
+//        TicState tic = null;
+//        try {
+//            tic = PartidaGorde.ticIrakurri(fitxategia, ticId);
+//            setState(tic);
+//        } catch (Exception e) {
+//            System.out.println("Fitxategi hori ez da existitzen.");
+//            System.exit(0);
+//        }
         JFrame frame = new JFrame("TankGame");
         JProgressBar progressBarT1 = new JProgressBar();
         JProgressBar progressBarT2 = new JProgressBar();
@@ -89,9 +112,20 @@ public class Replay extends JPanel {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
+
         while (true) {
-            setState(PartidaGorde.ticIrakurri(fitxategia, ticId));
+            try {
+                setState(tic = (TicState) inStream.readObject());
+            } catch (FileNotFoundException ex) {
+                System.out.println("Fitxategia ez dago bere lekuan.");
+                System.exit(0);
+            } catch (IOException ex) {
+                System.out.println("Ez dago objektu gehiagorik.");
+                System.exit(0);
+            } catch (ClassNotFoundException ex) {
+                System.out.println("ClassNotFound Salbuespena gertatu da.");
+                System.exit(0);
+            }
 
             if (map1.getDimension().getX() % 2 == 0) {
                 progressBarT1.setValue(t.getHP1());
@@ -107,8 +141,8 @@ public class Replay extends JPanel {
                 progressBarT2.setValue(t.getHP2());
                 progressBarT2.setBounds(1 * map1.getGrid(), ((map1.getDimension().getY() + 1) * map1.getGrid()), ((map1.getDimension().getX() / 2) - 2) * map1.getGrid(), 2 * map1.getGrid());
             }
-            
-            ticId ++;
+
+//            ticId ++;
             frame.repaint();
             Thread.sleep(1000 / timer);
         }
