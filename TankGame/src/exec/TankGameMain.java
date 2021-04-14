@@ -40,7 +40,7 @@ public class TankGameMain extends JPanel {
     private boolean gridOn = false;
     private static int randomBg = (int) Math.round(Math.random());
 
-    private static boolean record = true;
+    private static boolean record = false;
     private static SimpleDateFormat sdf = new SimpleDateFormat("ss-mm-dd-M-yyyy");
     private static String fitxategia = sdf.format(new Date());
 
@@ -136,6 +136,7 @@ public class TankGameMain extends JPanel {
             frameM.setVisible(false);
             frameT.setVisible(true);
             option = 0;
+            record = true;
         });
 
         repB.addActionListener(e -> {
@@ -150,6 +151,8 @@ public class TankGameMain extends JPanel {
         frameR.setSize(500, 550);
         frameR.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frameR.setVisible(true);
+        frameR.setMaximumSize(new Dimension(500, 550));
+        frameR.setMinimumSize(new Dimension(500, 550));
 
         JPanel panelR = new JPanel();
         panelR.setSize(500, 550);
@@ -168,7 +171,11 @@ public class TankGameMain extends JPanel {
         JButton backMenu = new JButton("Menu");
         backMenu.setBounds(10, 450, 80, 49);
 
+        JButton playReplay = new JButton("Play");
+        playReplay.setBounds(85, 450, 80, 49);
+
         frameR.add(changeName);
+        frameR.add(playReplay);
         frameR.add(cnButton);
         frameR.add(backMenu);
         frameR.add(cnLabel);
@@ -190,18 +197,29 @@ public class TankGameMain extends JPanel {
 
             }
         }
-
         for (int i = 0; i < saves.size(); i++) {
-            if (i == 0) {
-                saves.get(i).setText("Recording");
-                saves.get(i).setEnabled(false);
-            }
-            
+
             String buttomname = saves.get(i).getText();
             int buttomint = i;
 
-            saves.get(i).addActionListener(e -> {
+            saves.get(buttomint).addActionListener(e -> {
                 changeName.setText(saves.get(buttomint).getText());
+
+                playReplay.addActionListener(k -> {
+                    frameR.setVisible(false);
+                    frameT.setVisible(true);
+                    try {
+                        Replay.main(null);
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(TankGameMain.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (IOException ex) {
+                        Logger.getLogger(TankGameMain.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (ClassNotFoundException ex) {
+                        Logger.getLogger(TankGameMain.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    option = 0;
+                    Replay.fitxategia =  saves.get(buttomint).getText();
+                });
 
                 cnButton.addActionListener(j -> {
                     Path source = Paths.get("db\\" + buttomname);
@@ -218,7 +236,7 @@ public class TankGameMain extends JPanel {
         }
     }
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException, IOException {
         menu();
         JProgressBar progressBarT1 = new JProgressBar();
         JProgressBar progressBarT2 = new JProgressBar();
@@ -465,6 +483,9 @@ public class TankGameMain extends JPanel {
                     t.setHP2(100);
                     t.setT1Position(1, 1);
                     t.setT2Position(map1.getDimension().getX() - 2, map1.getDimension().getY() - 2);
+                    out.close();
+                    eioasdfl = true;
+                    fitxategia = sdf.format(new Date());
                 }
                 if (option == 1) {
                     option = 2;
@@ -474,6 +495,10 @@ public class TankGameMain extends JPanel {
                     t.setT2Position(map1.getDimension().getX() - 2, map1.getDimension().getY() - 2);
                     frameM.setVisible(true);
                     frameT.setVisible(false);
+                    out.close();
+                    eioasdfl = true;
+                    fitxategia = sdf.format(new Date());
+                    record = false;
                 }
             } else if (t.getHP1() == 0 && t.getHP2() != 0) {
                 option = JOptionPane.showConfirmDialog(null, "Try Again?", " Blue Tank Wins!", JOptionPane.YES_NO_OPTION);
@@ -482,6 +507,9 @@ public class TankGameMain extends JPanel {
                     t.setHP2(100);
                     t.setT1Position(1, 1);
                     t.setT2Position(map1.getDimension().getX() - 2, map1.getDimension().getY() - 2);
+                    out.close();
+                    eioasdfl = true;
+                    fitxategia = sdf.format(new Date());
                 }
                 if (option == 1) {
                     option = 2;
@@ -491,6 +519,10 @@ public class TankGameMain extends JPanel {
                     t.setT2Position(map1.getDimension().getX() - 2, map1.getDimension().getY() - 2);
                     frameM.setVisible(true);
                     frameT.setVisible(false);
+                    out.close();
+                    eioasdfl = true;
+                    fitxategia = sdf.format(new Date());
+                    record = false;
                 }
             } else if (t.getHP2() == 0 && t.getHP1() != 0) {
                 option = JOptionPane.showConfirmDialog(null, "Try Again?", "Yellow Tank Wins!", JOptionPane.YES_NO_OPTION);
@@ -499,6 +531,9 @@ public class TankGameMain extends JPanel {
                     t.setHP2(100);
                     t.setT1Position(1, 1);
                     t.setT2Position(map1.getDimension().getX() - 2, map1.getDimension().getY() - 2);
+                    out.close();
+                    eioasdfl = true;
+                    fitxategia = sdf.format(new Date());
                 }
                 if (option == 1) {
                     option = 2;
@@ -508,6 +543,10 @@ public class TankGameMain extends JPanel {
                     t.setT2Position(map1.getDimension().getX() - 2, map1.getDimension().getY() - 2);
                     frameM.setVisible(true);
                     frameT.setVisible(false);
+                    out.close();
+                    eioasdfl = true;
+                    fitxategia = sdf.format(new Date());
+                    record = false;
                 }
             }
 
@@ -587,12 +626,12 @@ public class TankGameMain extends JPanel {
                     eioasdfl = false;
                 }
                 try {
-                    
+
                     PartidaGorde.ticGehitu(new TicState(id, map1, t, timer, paretak,
                             t1TiroDraw, t2TiroDraw, t1TiroPos,
                             t2TiroPos, t1TiroDir, t2TiroDir), out);
                     id++;
-                    if(id % 1 == 0){
+                    if (id % 1 == 0) {
                         out.reset();
                     }
                 } catch (Exception e) {

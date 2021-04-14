@@ -19,7 +19,7 @@ import javax.swing.JProgressBar;
 
 public class Replay extends JPanel {
 
-    private static String fitxategia = "29-22-14-4-2021.dat";
+    public static String fitxategia = "";
 
     private static Map map1;
     private static Tank t;
