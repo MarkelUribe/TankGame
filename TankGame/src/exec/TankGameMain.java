@@ -242,9 +242,7 @@ public class TankGameMain extends JPanel {
         int T2TiroCicle = 0;
 
         ObjectOutputStream out = null;
-        if (record) {
-            out = PartidaGorde.idatziSortu(fitxategia);
-        }
+        boolean eioasdfl = true;
 
         while (true) {
 
@@ -584,7 +582,10 @@ public class TankGameMain extends JPanel {
 
             //Grabazioa
             if (record) {
-
+                if (eioasdfl) {
+                    out = PartidaGorde.idatziSortu(fitxategia);
+                    eioasdfl = false;
+                }
                 try {
                     
                     PartidaGorde.ticGehitu(new TicState(id, map1, t, timer, paretak,
