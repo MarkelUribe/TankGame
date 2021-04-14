@@ -7,16 +7,11 @@ import javax.swing.JProgressBar;
 
 public class TicState implements Serializable {
 
-    int id;
-
     Map map1;
     Tank t;
     int timer;
 
     ArrayList<Pared> paretak;
-
-    boolean t1Tiro;
-    boolean t2Tiro;
 
     boolean t1TiroDraw;
     boolean t2TiroDraw;
@@ -30,7 +25,6 @@ public class TicState implements Serializable {
     public TicState(int id, Map m, Tank t, int timer, ArrayList<Pared> paretak,
             boolean t1TiroDraw, boolean t2TiroDraw, MyPoint t1TiroPos,
             MyPoint t2TiroPos, int t1TiroDir, int t2TiroDir) {
-        this.id = id;
         map1 = m;
         this.t = t;
         this.timer = timer;
@@ -41,10 +35,6 @@ public class TicState implements Serializable {
         this.t2TiroPos = t2TiroPos;
         this.t1TiroDir = t1TiroDir;
         this.t2TiroDir = t2TiroDir;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public void setMap1(Map map1) {
@@ -61,14 +51,6 @@ public class TicState implements Serializable {
 
     public void setParetak(ArrayList<Pared> paretak) {
         this.paretak = paretak;
-    }
-
-    public void setT1Tiro(boolean t1Tiro) {
-        this.t1Tiro = t1Tiro;
-    }
-
-    public void setT2Tiro(boolean t2Tiro) {
-        this.t2Tiro = t2Tiro;
     }
 
     public void setT1TiroDraw(boolean t1TiroDraw) {
@@ -95,10 +77,6 @@ public class TicState implements Serializable {
         this.t2TiroDir = t2TiroDir;
     }
 
-    public int getId() {
-        return id;
-    }
-
     public Map getMap1() {
         return map1;
     }
@@ -113,14 +91,6 @@ public class TicState implements Serializable {
 
     public ArrayList<Pared> getParetak() {
         return paretak;
-    }
-
-    public boolean isT1Tiro() {
-        return t1Tiro;
-    }
-
-    public boolean isT2Tiro() {
-        return t2Tiro;
     }
 
     public boolean isT1TiroDraw() {

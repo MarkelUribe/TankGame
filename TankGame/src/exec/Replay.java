@@ -27,9 +27,6 @@ public class Replay extends JPanel {
 
     private static ArrayList<Pared> paretak;
 
-    private static boolean t1Tiro;
-    private static boolean t2Tiro;
-
     private static boolean t1TiroDraw;
     private static boolean t2TiroDraw;
 
@@ -59,8 +56,6 @@ public class Replay extends JPanel {
         t = tic.getT();
         timer = tic.getTimer();
         paretak = tic.getParetak();
-        t1Tiro = tic.isT1Tiro();
-        t2Tiro = tic.isT2Tiro();
         t1TiroDraw = tic.isT1TiroDraw();
         t2TiroDraw = tic.isT2TiroDraw();
         t1TiroPos = tic.getT1TiroPos();
