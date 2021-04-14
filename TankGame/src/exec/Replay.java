@@ -3,7 +3,6 @@ package exec;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.io.ObjectInputStream;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import model.*;
@@ -14,7 +13,7 @@ import javax.swing.JProgressBar;
 
 public class Replay extends JPanel {
 
-    private static String fitxategia = "22-26-3-2021.dat";
+    private static String fitxategia = "49-41-13-4-2021.dat";
 
     private static Map map1;
     private static Tank t;

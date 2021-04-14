@@ -54,6 +54,7 @@ public class TankGameMain extends JPanel {
 
     private static JFrame frameT = new JFrame("TankGame");
     private static JFrame frameM = new JFrame("Menu");
+    private static JFrame frameR = new JFrame("ReplayMenu");
     private static int option;
 
     private static boolean t1TiroCool = false;
@@ -134,7 +135,6 @@ public class TankGameMain extends JPanel {
         hasiB.addActionListener(e -> {
             frameM.setVisible(false);
             frameT.setVisible(true);
-            record = true;
             option = 0;
         });
 
@@ -147,7 +147,6 @@ public class TankGameMain extends JPanel {
 
     public static void replayMenu() {
 
-        JFrame frameR = new JFrame();
         frameR.setSize(500, 550);
         frameR.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frameR.setVisible(true);
@@ -164,40 +163,57 @@ public class TankGameMain extends JPanel {
         changeName.setBounds(170, 450, 150, 50);
 
         JButton cnButton = new JButton("Change");
-        cnButton.setBounds(320, 450, 80, 49);
+        cnButton.setBounds(316, 450, 80, 49);
+
+        JButton backMenu = new JButton("Menu");
+        backMenu.setBounds(10, 450, 80, 49);
 
         frameR.add(changeName);
         frameR.add(cnButton);
+        frameR.add(backMenu);
         frameR.add(cnLabel);
         frameR.add(panelR);
+
+        backMenu.addActionListener(e -> {
+            frameR.setVisible(false);
+            frameM.setVisible(true);
+            option = 0;
+        });
 
         ArrayList<JButton> saves = new ArrayList<>();
         File path = new File("db\\");
         File[] listOfFiles = path.listFiles();
 
-        for (int i = 1; i < listOfFiles.length; i++) {
+        for (int i = 0; i < listOfFiles.length; i++) {
             if (listOfFiles[i].isFile()) {
                 saves.add(new JButton(listOfFiles[i].getName()));
+
             }
         }
 
         for (int i = 0; i < saves.size(); i++) {
-            String bottomname = saves.get(i).getText();
-            int bottomint = i;
+            if (i == 0) {
+                saves.get(i).setText("Recording");
+                saves.get(i).setEnabled(false);
+            }
+            
+            String buttomname = saves.get(i).getText();
+            int buttomint = i;
 
             saves.get(i).addActionListener(e -> {
-                changeName.setText(bottomname);
+                changeName.setText(saves.get(buttomint).getText());
 
                 cnButton.addActionListener(j -> {
-                    Path source = Paths.get("db\\" + bottomname);
+                    Path source = Paths.get("db\\" + buttomname);
                     try {
-                        saves.get(bottomint).setText(changeName.getText());
+                        saves.get(buttomint).setText(changeName.getText());
                         Files.move(source, source.resolveSibling(changeName.getText()), StandardCopyOption.REPLACE_EXISTING);
                     } catch (IOException ex) {
                         Logger.getLogger(TankGameMain.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 });
             });
+
             panelR.add(saves.get(i));
         }
     }
@@ -570,6 +586,7 @@ public class TankGameMain extends JPanel {
             if (record) {
 
                 try {
+                    
                     PartidaGorde.ticGehitu(new TicState(id, map1, t, timer, paretak,
                             t1TiroDraw, t2TiroDraw, t1TiroPos,
                             t2TiroPos, t1TiroDir, t2TiroDir), out);
